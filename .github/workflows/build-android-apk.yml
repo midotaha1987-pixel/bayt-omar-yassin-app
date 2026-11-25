@@ -1,0 +1,189 @@
+# بناء نسخة APK (debug) للعبة «بيت عمر وياسين ومعاهم نونو» — يعمل على GitHub
+# الناتج: ملف bayt-omar-yassin-v1.0.0.apk جاهز للتثبيت على أندرويد مباشرة،
+# ويُرفع كأصل (asset) في الإصدار apk-v1.0.0 — رابطه ثابت:
+# https://github.com/midotaha1987-pixel/bayt-omar-yassin-app/releases/download/apk-v1.0.0/bayt-omar-yassin-v1.0.0.apk
+#
+# ⚠️ قاعدة ذهبية — لا تحذف الإصدار أبداً: الإصدارات على مستودعات روني
+# immutable منذ نشرها (حذف إصدار يحرق الوسم نهائياً — GitHub يرفض إعادة
+# استخدامه: 422 «tag_name was used by an immutable release»). لذلك:
+# الإصدار يُنشأ **مسودة** (draft)، يُرفع الأصل إليها، ثم تُنشر — والنشر
+# لا يحذف الإصدار أبداً بل يحدّث أصله في مكانه. لو احتجنا إصداراً جديداً
+# تماماً نستخدم وسماً جديداً (apk-v1.0.1…) ونحدّث زر التحميل.
+# ⚠️ توقيع debug بمفتاح ثابت (2026-11-25): كل بناء يوقّع بـ debug keystore
+# جديد يولّده الـ runner يختلف مفتاحه، فيرفض أندرويد تثبيت أي نسخة جديدة
+# فوق القديمة (INSTALL_FAILED_UPDATE_INCOMPATIBLE). لذلك التوقيع بمفتاح
+# ثابت ملتزم في android/app/bayt-omar-yassin-debug.keystore
+# (signingConfigs.debug في android/app/build.gradle) — لا تغيّر المفتاح
+# أبداً وإلا عاد نفس العطل. من يحدّث من نسخة قديمة بمفتاح آخر يجب أن
+# يلغي تثبيت التطبيق أولاً (مرة واحدة) ثم يثبّت النسخة الجديدة.
+# ⚠️ الوسم apk-v1.0.0 يُنشأ بالدفع المباشر من SSH قبل أول بناء (الـ workflow
+# لا ينشئ الوسوم) — ثم ينشئ الـ workflow الإصدار (مسودة) على نفس الوسم.
+#
+# متى يعمل:
+# - يدوياً من تبويب Actions (workflow_dispatch) — الطريقة المعتادة بعد أي
+#   تعديل على اللعبة (ملفات الويب تُنسخ في www/ أثناء البناء).
+# - تلقائياً عند دفع تعديل يمسّ ملفات اللعبة أو أندرويد/Capacitor.
+# نسخة debug لا تحتاج مفتاح توقيع، وتصلح للتوزيع الداخلي فقط.
+# نسخة release الموقّعة (Google Play) تحتاج keystore + أسرار GitHub — تُضاف لاحقاً.
+name: Build Android APK
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "assets/**"
+      - "privacy.html"
+      - "icon-192.png"
+      - "icon-512.png"
+      - "capacitor.config.json"
+      - "package.json"
+      - "package-lock.json"
+      - "android/**"
+      - "scripts/sync-www.js"
+      - ".github/workflows/build-android-apk.yml"
+  workflow_dispatch:
+
+jobs:
+  build-android-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # Publish step needs the apk-v1.0.0 tag visible locally
+          # (default shallow checkout fetches no tags).
+          fetch-tags: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync web assets
+        run: npm run sync
+
+      # Capacitor 8's android library targets Java 21 — JDK 17 fails its
+      # compile with "invalid source release: 21".
+      - name: Setup JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      # GitHub-hosted runners already ship the full Android SDK (root-owned at
+      # /usr/local/lib/android/sdk). android-actions/setup-android@v3 fails on
+      # it (permission errors reinstalling over the preinstalled SDK), so use
+      # the preinstalled one directly instead.
+      - name: Use runner's preinstalled Android SDK
+        run: |
+          echo "ANDROID_HOME=${ANDROID_HOME:-/usr/local/lib/android/sdk}" >> "$GITHUB_ENV"
+          ls "${ANDROID_HOME:-/usr/local/lib/android/sdk}/build-tools"
+          ls "${ANDROID_HOME:-/usr/local/lib/android/sdk}/platforms"
+
+      - name: Build APK (debug)
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace 2>&1 | tee "$GITHUB_WORKSPACE/gradle-android-apk.log"
+          test "${PIPESTATUS[0]}" -eq 0
+
+      # Keep the Gradle log when the build fails — the job log download
+      # needs repo auth, this artifact does not.
+      - name: Upload Gradle log on failure
+        if: failure()
+        uses: actions/upload-artifact@v5
+        with:
+          name: gradle-android-apk-log
+          path: gradle-android-apk.log
+          if-no-files-found: warn
+
+      - name: Rename APK
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk bayt-omar-yassin-v1.0.0.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v5
+        with:
+          name: bayt-omar-yassin-apk
+          path: bayt-omar-yassin-v1.0.0.apk
+          if-no-files-found: error
+
+      # Stable download URL:
+      # .../releases/download/apk-v1.0.0/bayt-omar-yassin-v1.0.0.apk
+      # (the tag apk-v1.0.0 is created by direct SSH push; the workflow
+      # never deletes the release — see the header note about immutable tags)
+      # NOTE: publish goes through the REST API with curl, whose raw response
+      # shows the cause if it fails.
+      - name: Publish to release apk-v1.0.0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -x
+          {
+          python3 - <<'PYEOF' > /tmp/release_payload.json
+          import json
+          print(json.dumps({
+            "tag_name": "apk-v1.0.0",
+            "target_commitish": "main",
+            "name": "Android v1.0.0 (APK)",
+            "body": "نسخة أندرويد (debug) من لعبة «بيت عمر وياسين ومعاهم نونو» — تثبيت مباشر من خارج المتجر. اللعبة كاملة تعمل بدون إنترنت، بدون إعلانات وبدون تسجيل دخول.",
+            "draft": True,
+            "prerelease": False,
+          }, ensure_ascii=False))
+          PYEOF
+          # 1) Create (or reuse) the DRAFT release. NOTE: GET /releases/tags/{tag}
+          # cannot see draft releases at all — so the release id and upload_url
+          # MUST come from the create response, never from a re-GET by tag.
+          CREATE_HTTP=$(curl -s -o /tmp/create.json -w "%{http_code}" -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases" --data @/tmp/release_payload.json)
+          echo "CREATE_HTTP:$CREATE_HTTP"
+          tail -c 600 /tmp/create.json; echo
+          REL_ID=$(python3 -c "import json; print(json.load(open('/tmp/create.json')).get('id') or '')" 2>/dev/null)
+          UPLOAD_URL=$(python3 -c "import json; print(json.load(open('/tmp/create.json')).get('upload_url','').split('{')[0])" 2>/dev/null)
+          if [ -z "$REL_ID" ]; then
+            echo "create returned no id (release may already exist published) — falling back to GET by tag"
+            REL_JSON=$(curl -s -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/tags/apk-v1.0.0")
+            REL_ID=$(echo "$REL_JSON" | python3 -c "import json,sys; print(json.load(sys.stdin).get('id') or '')" 2>/dev/null)
+            UPLOAD_URL=$(echo "$REL_JSON" | python3 -c "import json,sys; print(json.load(sys.stdin).get('upload_url','').split('{')[0])" 2>/dev/null)
+          fi
+          if [ -z "$REL_ID" ] || [ -z "$UPLOAD_URL" ]; then echo "ERROR: no release id/upload url"; exit 1; fi
+          echo "release id: $REL_ID"
+          # 2) Upload the APK (retry; delete a stale same-name asset first).
+          for i in 1 2 3; do
+            REL_JSON=$(curl -s -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/$REL_ID")
+            ASSET_ID=$(echo "$REL_JSON" | python3 -c "import json,sys; d=json.load(sys.stdin); print(next((str(a['id']) for a in d.get('assets',[]) if a['name']=='bayt-omar-yassin-v1.0.0.apk'), ''))" 2>/dev/null)
+            if [ -n "$ASSET_ID" ]; then
+              echo "deleting stale asset $ASSET_ID first"
+              curl -s -o /dev/null -w "DELETE_ASSET_HTTP:%{http_code}\n" -X DELETE -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/assets/$ASSET_ID"
+            fi
+            UPLOAD_HTTP=$(curl -s -o /tmp/upload.json -w "%{http_code}" -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Content-Type: application/vnd.android.package-archive" --data-binary @bayt-omar-yassin-v1.0.0.apk "$UPLOAD_URL?name=bayt-omar-yassin-v1.0.0.apk")
+            echo "UPLOAD_HTTP:$UPLOAD_HTTP (attempt $i)"
+            tail -c 300 /tmp/upload.json; echo
+            echo "$UPLOAD_HTTP" | grep -q "^2" && break
+            echo "upload failed — retrying in 20s"
+            sleep 20
+          done
+          echo "$UPLOAD_HTTP" | grep -q "^2" || { echo "ERROR: upload failed after 3 attempts"; exit 1; }
+          # 3) Publish the draft (immutable releases lock only once published).
+          PATCH_HTTP=$(curl -s -o /tmp/patch.json -w "%{http_code}" -X PATCH -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/$REL_ID" -d '{"draft": false}')
+          echo "PATCH_HTTP:$PATCH_HTTP"
+          tail -c 400 /tmp/patch.json; echo
+          # 4) Final check: the (now published) release must exist AND carry the APK asset.
+          curl -s -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/tags/apk-v1.0.0" | python3 -c "import json,sys; d=json.load(sys.stdin); a=d.get('assets',[]); print('ASSETS:', [(x['name'], x['size']) for x in a]); sys.exit(0 if any(x['name']=='bayt-omar-yassin-v1.0.0.apk' for x in a) else 1)"
+          } 2>&1 | tee "$GITHUB_WORKSPACE/publish.log"
+          test "${PIPESTATUS[0]}" -eq 0
+
+      # Job logs need repo auth to read; surface the publish log as a
+      # job annotation instead (readable without auth).
+      - name: Annotate publish log on failure
+        if: failure()
+        run: |
+          MSG=$(tail -60 "$GITHUB_WORKSPACE/publish.log" | sed -e 's/%/%25/g' -e 's/\r/%0D/g' | awk '{print $0 "%0A"}' | tr -d '\n')
+          echo "::error title=APK publish log::$MSG"

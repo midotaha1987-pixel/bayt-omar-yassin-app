@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">بيت عمر وياسين ومعاهم نونو</string>
+    <string name="title_activity_main">بيت عمر وياسين ومعاهم نونو</string>
+    <string name="package_name">com.bayt.omar.yassin</string>
+    <string name="custom_url_scheme">com.bayt.omar.yassin</string>
+</resources>

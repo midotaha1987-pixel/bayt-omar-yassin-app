@@ -1,0 +1,1702 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>بيت عمر وياسين ومعاهم نونو</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 3rem; }
+    </style>
+    <style>
+      :root{
+        --ink:#3c3a4d;
+        --ink-soft:#7a7590;
+        --paper:#fdf3cf;
+        --paper2:#fdeed3;
+        --card:#ffffff;
+        --coral:#e2543e;
+        --coral-dark:#c23e2b;
+        --blue:#4a90e2;
+        --blue-dark:#3570b8;
+        --teal:#17b890;
+        --teal-dark:#0e8f6e;
+        --orange:#ff8a3d;
+        --purple:#a678e8;
+        --pink:#ff6b8a;
+        --sun:#ffc93c;
+        --sun-dark:#f0a500;
+        --line:#f3e3bb;
+        --shadow:0 5px 0 rgba(60,58,77,.10), 0 12px 24px rgba(60,58,77,.10);
+        --radius:24px;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --ink:#f2ecff; --ink-soft:#c9c2e8;
+          --paper:#262040; --paper2:#2c2450;
+          --card:#372e5c; --line:#4c427a;
+          --shadow:0 5px 0 rgba(0,0,0,.25), 0 12px 24px rgba(0,0,0,.35);
+        }
+      }
+      html,body{ margin:0; padding:0; }
+      body{
+        font-family:"Baloo Bhaijaan 2","Segoe UI",system-ui,sans-serif;
+        background:linear-gradient(180deg,var(--paper2),var(--paper) 30%);
+        color:var(--ink);
+        -webkit-tap-highlight-color:transparent;
+        overflow-x:hidden;
+        min-height:100vh;
+      }
+      h1,h2,h3,p{ margin:0; }
+      button{ font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+
+      /* ===== الترويسة ===== */
+      header.topbar{
+        position:sticky; top:0; z-index:40;
+        display:flex; align-items:center; gap:10px;
+        padding:10px 14px; max-width:640px; margin:0 auto;
+      }
+      .round-btn{
+        width:52px; height:52px; min-height:52px; border-radius:50%; display:grid; place-items:center;
+        background:var(--card); box-shadow:0 4px 0 rgba(60,58,77,.14); flex:none;
+      }
+      .round-btn:active{ transform:translateY(2px); box-shadow:none; }
+      .round-btn svg{ width:26px; height:26px; }
+      .pill{
+        display:inline-flex; align-items:center; gap:6px;
+        background:var(--card); border-radius:999px;
+        padding:6px 18px 6px 14px; font-weight:800; font-size:1.3rem;
+        box-shadow:0 4px 0 rgba(60,58,77,.14);
+      }
+      .pill svg{ width:26px; height:26px; }
+      .spacer{ flex:1; }
+
+      main{ max-width:640px; margin:0 auto; padding:6px 14px 56px; }
+      .screen{ display:none; }
+      .screen.active{ display:block; animation:pop-in .3s ease both; }
+      @keyframes pop-in{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none;} }
+      @media (prefers-reduced-motion: reduce){ .screen.active{ animation:none; } }
+
+      /* ===== الرئيسية ===== */
+      .game-title{ text-align:center; font-size:clamp(2.1rem,9vw,3rem); font-weight:800; color:var(--coral); padding:10px 4px 2px; line-height:1.2; }
+      .sub-pill{
+        display:block; width:fit-content; margin:8px auto 4px;
+        background:var(--card); border-radius:999px; padding:6px 20px;
+        font-weight:800; font-size:1.05rem; box-shadow:0 3px 0 rgba(60,58,77,.12);
+      }
+      .trio{ display:flex; justify-content:center; align-items:flex-end; gap:6px; margin-top:10px; }
+      .trio .pal{ width:31%; max-width:170px; padding:4px; border-radius:20px; position:relative; }
+      .trio .pal svg{ width:100%; display:block; }
+      .trio .pal .nm{ display:block; text-align:center; font-weight:800; font-size:1.1rem; margin-top:2px; }
+      .trio .pal.waving svg{ animation:wave .6s ease; transform-origin:bottom center; }
+      @keyframes wave{ 0%,100%{ transform:rotate(0);} 25%{ transform:rotate(-5deg) translateY(-4px);} 60%{ transform:rotate(5deg) translateY(-4px);} }
+      @media (prefers-reduced-motion: reduce){ .trio .pal.waving svg{ animation:none; } }
+      .say-bar{
+        margin-top:14px; width:100%; display:flex; align-items:center; gap:10px;
+        background:var(--blue); color:#fff; border-radius:999px; padding:12px 20px;
+        font-size:1.15rem; font-weight:800; text-align:center; justify-content:center;
+        box-shadow:0 5px 0 var(--blue-dark);
+      }
+      .say-bar:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--blue-dark); }
+      .say-bar svg{ width:26px; height:26px; flex:none; }
+      .gift-card{
+        margin-top:14px; background:var(--card); border-radius:var(--radius);
+        box-shadow:var(--shadow); padding:14px 18px;
+        display:flex; align-items:center; gap:14px;
+      }
+      .gift-card svg{ width:52px; height:52px; flex:none; }
+      .gift-card .gt{ font-size:1.2rem; font-weight:800; }
+      .gift-card .gs{ color:var(--ink-soft); font-weight:700; }
+      .gift-btn{
+        margin-inline-start:auto; background:var(--coral); color:#fff; border-radius:16px;
+        padding:10px 20px; font-size:1.1rem; font-weight:800; min-height:52px;
+        box-shadow:0 4px 0 var(--coral-dark); flex:none;
+      }
+      .gift-btn:active{ transform:translateY(2px); box-shadow:none; }
+      .gift-btn:disabled{ background:#cfc9bd; box-shadow:none; color:#fff; cursor:default; }
+      @media (prefers-color-scheme: dark){ .gift-btn:disabled{ background:#554d7d; } }
+
+      .tiles{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px; }
+      .tile{
+        border-radius:28px; padding:18px 12px 14px; text-align:center; color:#fff;
+        box-shadow:0 6px 0 rgba(60,58,77,.18); min-height:150px;
+        display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+      }
+      .tile:active{ transform:translateY(3px); box-shadow:0 2px 0 rgba(60,58,77,.18); }
+      .tile svg{ width:64px; height:64px; }
+      .tile .tt{ font-size:1.35rem; font-weight:800; }
+      .tile .tp{ background:rgba(255,255,255,.35); border-radius:999px; padding:1px 14px; font-weight:800; font-size:.95rem; }
+      .tile.wide{ grid-column:1 / -1; min-height:120px; }
+      .tile.t-living{ background:#1db99a; }
+      .tile.t-kitchen{ background:#ff9f43; }
+      .tile.t-play{ background:#a678e8; }
+      .tile.t-puzzles{ background:#ff6b8a; }
+      .tile.t-shop{ background:#f5a623; }
+
+      /* ===== الغرف ===== */
+      .room-head{ display:flex; align-items:center; gap:10px; margin:4px 0 10px; }
+      .room-head h2{ font-size:1.5rem; font-weight:800; }
+      .task-stars{ display:flex; gap:5px; }
+      .task-stars svg{ width:34px; height:34px; }
+      .task-stars .off{ filter:grayscale(1); opacity:.35; }
+      .task-stars .just{ animation:star-pop .6s ease; }
+      @keyframes star-pop{ 0%{ transform:scale(.4) rotate(-30deg);} 60%{ transform:scale(1.35) rotate(8deg);} 100%{ transform:scale(1);} }
+      .scene-wrap{
+        position:relative; border-radius:28px; overflow:hidden;
+        border:5px solid var(--card); box-shadow:var(--shadow);
+        aspect-ratio:4/3.1; width:100%;
+        touch-action:manipulation; user-select:none; -webkit-user-select:none;
+        background:#ffe9c9;
+      }
+      .scene{ position:absolute; inset:0; }
+      .scene svg.bg{ position:absolute; inset:0; width:100%; height:100%; }
+      .hotspot{ position:absolute; cursor:pointer; }
+      .hotspot svg{ width:100%; height:100%; display:block; pointer-events:none; }
+      .drag{
+        position:absolute; cursor:grab; touch-action:none; z-index:6;
+        filter:drop-shadow(0 4px 4px rgba(60,58,77,.25));
+      }
+      .drag svg{ width:100%; height:100%; display:block; pointer-events:none; }
+      .drag.dragging{ cursor:grabbing; z-index:30; }
+      .drag.placed{ pointer-events:none; filter:none; }
+      .drag.shake{ animation:shake .4s ease; }
+      @keyframes shake{ 0%,100%{ transform:translateX(0);} 20%{ transform:translateX(-7px);} 45%{ transform:translateX(7px);} 70%{ transform:translateX(-5px);} 90%{ transform:translateX(4px);} }
+      .target-zone{ position:absolute; border:3px dashed rgba(255,255,255,0); border-radius:16px; transition:border-color .2s, background .2s; pointer-events:none; z-index:4; }
+      .scene.hinting .target-zone{ border-color:rgba(255,255,255,.9); background:rgba(255,255,255,.16); }
+      .target-zone.hot{ border-color:#fff !important; background:rgba(255,255,255,.38) !important; box-shadow:0 0 0 5px rgba(255,201,60,.65); }
+      .actor{ position:absolute; z-index:5; pointer-events:none; }
+      .actor svg{ width:100%; display:block; }
+      .actor.cheer svg{ animation:cheer-jump .55s ease; }
+      @keyframes cheer-jump{ 0%{ transform:translateY(0);} 35%{ transform:translateY(-13%) rotate(-3deg);} 65%{ transform:translateY(-9%) rotate(3deg);} 100%{ transform:translateY(0);} }
+      @media (prefers-reduced-motion: reduce){ .actor.cheer svg,.drag.shake,.task-stars .just{ animation:none; } }
+      .bubble{
+        position:absolute; z-index:20; background:#fff; color:#3c3a4d;
+        border:3px solid #3c3a4d; border-radius:16px; padding:5px 10px;
+        display:grid; place-items:center; box-shadow:0 4px 0 rgba(60,58,77,.2);
+      }
+      .bubble svg{ width:38px; height:38px; display:block; }
+      .bubble::after{ content:""; position:absolute; bottom:-11px; right:50%; transform:translateX(50%); border:6px solid transparent; border-top:8px solid #3c3a4d; }
+      .want-done{ position:absolute; z-index:21; font-size:1.5rem; }
+      .float-fx{ position:absolute; z-index:25; pointer-events:none; font-weight:800; animation:float-up 1.1s ease-out forwards; }
+      @keyframes float-up{ from{ opacity:1; transform:translateY(0) scale(1);} to{ opacity:0; transform:translateY(-54px) scale(1.3);} }
+      .lamp-glow{ position:absolute; border-radius:50%; pointer-events:none; opacity:0; transition:opacity .35s; z-index:3;
+        background:radial-gradient(circle, rgba(255,226,130,.9) 0%, rgba(255,226,130,0) 65%); }
+      .lamp-glow.on{ opacity:1; }
+      .fridge-door{ position:absolute; z-index:7; transform-origin:left center; transition:transform .5s ease; }
+      .fridge-door.open{ transform:perspective(500px) rotateY(58deg); }
+      .room-note{ text-align:center; color:var(--ink-soft); font-weight:700; margin-top:10px; min-height:1.6rem; }
+
+      /* ===== الألغاز ===== */
+      .game-list{ display:flex; flex-direction:column; gap:14px; }
+      .game-row{
+        background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+        padding:16px; display:flex; align-items:center; gap:14px; text-align:right; width:100%;
+      }
+      .game-row:active{ transform:scale(.985); }
+      .game-row .gi{ width:74px; height:74px; flex:none; border-radius:20px; display:grid; place-items:center; }
+      .game-row .gi svg{ width:50px; height:50px; }
+      .game-row h3{ font-size:1.35rem; font-weight:800; }
+      .game-row p{ color:var(--ink-soft); font-weight:700; }
+      .game-row .gs{ margin-inline-start:auto; font-weight:800; white-space:nowrap; display:flex; align-items:center; gap:4px; }
+      .game-row .gs svg{ width:22px; height:22px; }
+      .level-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:12px; }
+      .level-btn{
+        background:var(--card); border-radius:22px; box-shadow:var(--shadow);
+        padding:12px 6px 10px; text-align:center; min-height:104px;
+        display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+      }
+      .level-btn:active{ transform:scale(.96); }
+      .level-btn .ln{ font-size:1.7rem; font-weight:800; }
+      .level-btn .lt{ font-size:.82rem; font-weight:700; color:var(--ink-soft); line-height:1.25; }
+      .level-btn .ls{ display:flex; gap:2px; }
+      .level-btn .ls svg{ width:19px; height:19px; }
+      .level-btn .ls .off{ filter:grayscale(1); opacity:.3; }
+      .level-btn.locked{ opacity:.55; }
+      .level-btn.locked .ln{ font-size:1.3rem; }
+
+      .game-stage{
+        background:var(--card); border-radius:28px; box-shadow:var(--shadow);
+        padding:18px 14px 22px; text-align:center;
+      }
+      .q-chars{ display:flex; justify-content:center; align-items:flex-end; gap:8px; margin-bottom:6px; }
+      .q-chars .qc{ width:76px; }
+      .q-chars .qc svg{ width:100%; display:block; }
+      .q-chars .qc.bounce svg{ animation:cheer-jump .55s ease; }
+      .q-bubble{
+        background:var(--paper); border:3px solid var(--line); border-radius:18px;
+        padding:10px 14px; font-size:1.25rem; font-weight:800; min-height:3.4rem;
+        display:flex; align-items:center; justify-content:center;
+      }
+      @media (prefers-color-scheme: dark){ .q-bubble{ background:var(--paper2); } }
+      .progress-dots{ display:flex; gap:7px; justify-content:center; margin:12px 0 14px; }
+      .progress-dots span{ width:15px; height:15px; border-radius:50%; background:var(--line); }
+      .progress-dots span.done{ background:var(--sun); }
+      .progress-dots span.now{ background:var(--teal); transform:scale(1.25); }
+      .play-area{ min-height:170px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; }
+      .count-stage{ display:flex; flex-wrap:wrap; gap:7px; justify-content:center; max-width:430px; direction:ltr; }
+      .count-stage .ci{ width:50px; height:50px; position:relative; animation:pop-in .3s ease both; }
+      .count-stage .ci svg{ width:100%; height:100%; }
+      .count-stage .ci.crossed svg{ opacity:.32; }
+      .count-stage .ci.crossed::after{
+        content:""; position:absolute; inset:4%;
+        background:
+          linear-gradient(to top right, transparent calc(50% - 3px), var(--coral) calc(50% - 3px), var(--coral) calc(50% + 3px), transparent calc(50% + 3px)),
+          linear-gradient(to bottom right, transparent calc(50% - 3px), var(--coral) calc(50% - 3px), var(--coral) calc(50% + 3px), transparent calc(50% + 3px));
+      }
+      .add-visual{ display:flex; align-items:flex-start; gap:10px; justify-content:center; flex-wrap:wrap; direction:ltr; }
+      .add-group{ display:flex; flex-wrap:wrap; gap:4px; max-width:168px; justify-content:center; background:var(--paper); border:3px dashed var(--line); border-radius:16px; padding:8px; }
+      @media (prefers-color-scheme: dark){ .add-group{ background:var(--paper2); } }
+      .add-group .ci{ width:34px; height:34px; }
+      .add-group .ci svg{ width:100%; height:100%; }
+      .add-sign{ font-size:2.1rem; font-weight:800; color:var(--coral); align-self:center; }
+      .big-nums{ font-size:3rem; font-weight:800; letter-spacing:2px; direction:ltr; }
+      .big-nums .op{ color:var(--coral); }
+      .seq-row{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; direction:ltr; }
+      .tile-s{
+        width:58px; height:58px; border-radius:16px; display:grid; place-items:center;
+        background:var(--paper); border:3px solid var(--line); font-size:1.6rem; font-weight:800;
+      }
+      @media (prefers-color-scheme: dark){ .tile-s{ background:var(--paper2); } }
+      .tile-s svg{ width:40px; height:40px; }
+      .tile-s.qmark{ color:var(--coral); background:#ffe9e6; border-style:dashed; border-color:var(--coral); }
+      @media (prefers-color-scheme: dark){ .tile-s.qmark{ background:#4a2b33; } }
+      .options{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+      .opt-btn{
+        min-width:80px; min-height:68px; padding:8px 16px; border-radius:18px;
+        background:var(--card); border:4px solid var(--line); font-size:1.8rem; font-weight:800;
+        box-shadow:0 4px 0 rgba(60,58,77,.12); display:grid; place-items:center;
+      }
+      .opt-btn svg{ width:46px; height:46px; }
+      .opt-btn:active{ transform:translateY(2px); box-shadow:none; }
+      .opt-btn.right{ border-color:#4caf50; background:#e8f9e4; animation:cheer-jump .45s ease; }
+      .opt-btn.wrong{ border-color:var(--coral); background:#ffe9e6; animation:shake .35s ease; }
+      .feedback{ font-size:1.25rem; font-weight:800; min-height:2rem; margin-top:8px; }
+      .feedback.good{ color:#2c9e1f; }
+      .feedback.bad{ color:var(--coral-dark); }
+      .memory-grid{ display:grid; gap:9px; justify-content:center; direction:ltr; margin:0 auto; }
+      .mem-card{ border-radius:16px; position:relative; transform-style:preserve-3d; transition:transform .35s ease; padding:0; min-height:0; aspect-ratio:1; width:100%; }
+      .mem-card .face{ position:absolute; inset:0; border-radius:16px; display:grid; place-items:center; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+      .mem-card .front{ background:linear-gradient(145deg,#ffb03a,#ff8a5c); border:3px solid #e8742c; color:#fff; font-size:1.6rem; font-weight:800; }
+      .mem-card .back{ background:var(--paper); border:3px solid var(--line); transform:rotateY(180deg); }
+      @media (prefers-color-scheme: dark){ .mem-card .back{ background:var(--paper2); } }
+      .mem-card .back svg{ width:62%; height:62%; }
+      .mem-card.flipped{ transform:rotateY(180deg); }
+      .mem-card.matched .back{ border-color:#4caf50; background:#e8f9e4; }
+
+      /* ===== الدكان ===== */
+      .nono-room{
+        position:relative; border-radius:28px; overflow:hidden; border:5px solid var(--card);
+        box-shadow:var(--shadow); aspect-ratio:4/2.9; background:#cdeffd;
+      }
+      .nono-room svg.bg{ position:absolute; inset:0; width:100%; height:100%; }
+      .room-item{ position:absolute; pointer-events:none; }
+      .room-item svg{ width:100%; height:100%; display:block; }
+      .nono-stage{ position:absolute; bottom:5%; right:50%; transform:translateX(50%); width:34%; max-width:150px; z-index:5; }
+      .nono-stage svg{ width:100%; display:block; }
+      .shop-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(104px,1fr)); gap:12px; margin-top:14px; }
+      .shop-item{
+        background:var(--card); border-radius:22px; box-shadow:var(--shadow);
+        padding:12px 8px 10px; text-align:center;
+        display:flex; flex-direction:column; align-items:center; gap:3px;
+      }
+      .shop-item .si{ width:56px; height:56px; }
+      .shop-item .si svg{ width:100%; height:100%; }
+      .shop-item .sn{ font-weight:800; font-size:1.05rem; }
+      .shop-item .sp{ font-weight:800; color:var(--sun-dark); display:flex; align-items:center; gap:3px; }
+      .shop-item .sp svg{ width:18px; height:18px; }
+      .shop-item .sb{
+        margin-top:4px; border-radius:12px; padding:7px 16px; font-weight:800; font-size:1rem;
+        min-height:48px; background:var(--teal); color:#fff; box-shadow:0 3px 0 var(--teal-dark); width:100%;
+      }
+      .shop-item .sb:active{ transform:translateY(2px); box-shadow:none; }
+      .shop-item .sb.remove{ background:var(--coral); box-shadow:0 3px 0 var(--coral-dark); }
+      .shop-item .sb:disabled{ background:#cfc9bd; box-shadow:none; cursor:default; }
+      @media (prefers-color-scheme: dark){ .shop-item .sb:disabled{ background:#554d7d; } }
+      .shop-sec{ font-size:1.3rem; font-weight:800; margin:20px 4px 2px; }
+
+      /* ===== نافذة الفوز ===== */
+      .overlay{ position:fixed; inset:0; z-index:80; display:none; place-items:center; background:rgba(28,24,54,.55); padding:18px; }
+      .overlay.show{ display:grid; }
+      .win-card{
+        background:var(--card); border-radius:28px; padding:26px 22px; text-align:center;
+        max-width:400px; width:100%; box-shadow:0 24px 60px rgba(0,0,0,.35);
+        animation:win-pop .4s cubic-bezier(.2,1.6,.4,1) both;
+      }
+      @keyframes win-pop{ from{ transform:scale(.7); opacity:0;} to{ transform:scale(1); opacity:1;} }
+      @media (prefers-reduced-motion: reduce){ .win-card{ animation:none; } }
+      .win-stars{ display:flex; justify-content:center; gap:6px; margin-bottom:8px; }
+      .win-stars svg{ width:64px; height:64px; }
+      .win-stars .off{ filter:grayscale(1); opacity:.3; }
+      .win-stars svg{ animation:star-pop .6s ease both; }
+      .win-stars svg:nth-child(2){ animation-delay:.15s; }
+      .win-stars svg:nth-child(3){ animation-delay:.3s; }
+      .win-card h2{ font-size:1.8rem; font-weight:800; }
+      .win-card p{ color:var(--ink-soft); font-weight:700; margin:6px 0 18px; font-size:1.1rem; }
+      .btn{
+        display:inline-flex; align-items:center; justify-content:center; gap:8px;
+        border-radius:16px; padding:12px 24px; font-size:1.15rem; font-weight:800; min-height:52px;
+      }
+      .btn-primary{ background:var(--teal); color:#fff; box-shadow:0 5px 0 var(--teal-dark); }
+      .btn-primary:active{ transform:translateY(3px); box-shadow:0 1px 0 var(--teal-dark); }
+      .btn-ghost{ background:var(--paper); color:var(--ink); border:3px solid var(--line); box-shadow:0 4px 0 rgba(60,58,77,.12); }
+      @media (prefers-color-scheme: dark){ .btn-ghost{ background:var(--paper2); } }
+      .btn-ghost:active{ transform:translateY(2px); box-shadow:none; }
+      .win-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+      .confetti{ position:fixed; top:-4vh; z-index:90; pointer-events:none; border-radius:3px; animation:fall linear forwards; }
+      @keyframes fall{ to{ transform:translateY(112vh) rotate(680deg); } }
+      footer.note{ text-align:center; color:var(--ink-soft); font-weight:600; padding:0 16px 26px; max-width:640px; margin:0 auto; }
+
+      /* ===== حركة الشخصيات: اللعبة حية ===== */
+      @keyframes idle-bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-4.5%);} }
+      @keyframes idle-sway{ 0%,100%{ transform:rotate(-1.6deg);} 50%{ transform:rotate(1.6deg);} }
+      @keyframes walk-in{ 0%{ transform:translateX(-46px); opacity:0;} 55%{ transform:translateX(7px); opacity:1;} 75%{ transform:translateY(-7px);} 100%{ transform:none; opacity:1;} }
+      @keyframes hop{ 0%{ transform:translateY(0);} 35%{ transform:translateY(-16%) rotate(-3deg);} 65%{ transform:translateY(-9%) rotate(3deg);} 100%{ transform:translateY(0);} }
+      .trio .pal svg{ animation:idle-bob 2.6s ease-in-out infinite; }
+      .trio .pal:nth-child(2) svg{ animation-delay:.45s; }
+      .trio .pal:nth-child(3) svg{ animation-delay:.9s; }
+      .screen.active .trio .pal{ animation:walk-in .7s ease both; }
+      .screen.active .trio .pal:nth-child(2){ animation-delay:.12s; }
+      .screen.active .trio .pal:nth-child(3){ animation-delay:.24s; }
+      .trio .pal.waving svg{ animation:wave .6s ease; }
+      .trio .pal.hopping svg{ animation:hop .55s ease; }
+      .actor{ animation:walk-in .8s ease both; }
+      .actor svg{ animation:idle-bob 2.9s ease-in-out infinite; }
+      .actor.cheer svg{ animation:cheer-jump .55s ease; }
+      .nono-stage svg{ animation:idle-bob 2.7s ease-in-out infinite; transform-origin:bottom center; }
+      .q-chars .qc{ animation:walk-in .6s ease both; }
+      .q-chars .qc svg{ animation:idle-sway 3.4s ease-in-out infinite; transform-origin:bottom center; }
+      .q-chars .qc.bounce svg{ animation:cheer-jump .55s ease; }
+      .drag.returning{ transition:right .45s ease, bottom .45s ease; }
+      @media (prefers-reduced-motion: reduce){
+        .trio .pal svg,.actor,.actor svg,.nono-stage svg,.q-chars .qc,.q-chars .qc svg,
+        .screen.active .trio .pal,.trio .pal.hopping svg{ animation:none; }
+        .drag.returning{ transition:none; }
+      }
+
+      /* ===== حفظ القرآن ===== */
+      .ayah-card{
+        background:var(--paper); border:3px solid var(--line); border-radius:20px;
+        padding:18px 14px; width:100%;
+      }
+      @media (prefers-color-scheme: dark){ .ayah-card{ background:var(--paper2); } }
+      .ayah-text{ font-size:1.7rem; line-height:2.15; font-weight:700; text-align:center; }
+      .ayah-text.blurred{ filter:blur(8px); }
+      .listen-count{ font-weight:800; color:var(--ink-soft); font-size:1.1rem; }
+      .quran-actions{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+      .streak-line{ text-align:center; font-weight:800; color:var(--sun-dark); margin-top:10px; min-height:1.6rem; font-size:1.05rem; }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <button class="round-btn" id="soundBtn" aria-label="تشغيل أو كتم الصوت">
+        <svg id="soundOnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 010 7"/><path d="M18 6a8.5 8.5 0 010 12"/></svg>
+        <svg id="soundOffIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor" stroke="none"/><path d="M16 9l6 6M22 9l-6 6"/></svg>
+      </button>
+      <div class="pill" title="نجومي">
+        <span id="starCount">٠</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.5l-6 3.3 1.3-6.7-5-4.6 6.8-.8z" fill="#ffc93c" stroke="#f0a500" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="spacer"></div>
+      <button class="round-btn" id="homeBtn" aria-label="البيت">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5L12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg>
+      </button>
+    </header>
+
+    <main>
+      <!-- ===== البيت ===== -->
+      <section class="screen active" id="screen-home">
+        <h1 class="game-title">بيت عمر وياسين</h1>
+        <span class="sub-pill">ومعاهم نونو · لسن ٦ ونص</span>
+        <div class="trio" id="trio"></div>
+        <button class="say-bar" id="greetBar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 010 7"/><path d="M18 6a8.5 8.5 0 010 12"/></svg>
+          <span id="greetText">دوس عليهم وهيسلّموا عليك</span>
+        </button>
+        <div class="gift-card">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="20" width="34" height="22" rx="3" fill="#ff6b8a"/><rect x="21" y="20" width="6" height="22" fill="#e2543e"/><rect x="5" y="13" width="38" height="8" rx="3" fill="#ff8fab"/><rect x="21" y="13" width="6" height="8" fill="#e2543e"/><path d="M24 13c-5 0-8-2.4-8-5 0-2.2 1.8-3.6 3.8-3.2C22 5 24 8 24 13zm0 0c5 0 8-2.4 8-5 0-2.2-1.8-3.6-3.8-3.2C26 5 24 8 24 13z" fill="#ffc93c"/></svg>
+          <div>
+            <div class="gt" id="giftTitle">هدية النهاردة: نجمتين</div>
+            <div class="gs" id="giftState">خد هديتك كل يوم!</div>
+          </div>
+          <button class="gift-btn" id="giftBtn">خد الهدية</button>
+        </div>
+        <p class="streak-line" id="streakLine"></p>
+        <div class="tiles" id="homeTiles"></div>
+      </section>
+
+      <!-- ===== الغرف ===== -->
+      <section class="screen" id="screen-room">
+        <div class="room-head">
+          <button class="round-btn" id="roomBack" aria-label="رجوع">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <h2 id="roomTitle">الغرفة</h2>
+          <div class="spacer"></div>
+          <div class="task-stars" id="taskStars"></div>
+        </div>
+        <button class="say-bar" id="roomSayBar" style="margin:0 0 12px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 010 7"/><path d="M18 6a8.5 8.5 0 010 12"/></svg>
+          <span id="roomSayText">يلا نلعب!</span>
+        </button>
+        <div class="scene-wrap" id="sceneWrap"></div>
+        <p class="room-note" id="roomNote"></p>
+      </section>
+
+      <!-- ===== محطة الألغاز ===== -->
+      <section class="screen" id="screen-puzzles">
+        <div class="room-head">
+          <button class="round-btn" id="puzzlesBack" aria-label="رجوع">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <h2>محطة الألغاز</h2>
+        </div>
+        <div class="game-list" id="gameList"></div>
+      </section>
+
+      <!-- ===== مستويات لعبة ===== -->
+      <section class="screen" id="screen-levels">
+        <div class="room-head">
+          <button class="round-btn" id="levelsBack" aria-label="رجوع">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <h2 id="levelsTitle">المستويات</h2>
+        </div>
+        <div class="level-grid" id="levelGrid"></div>
+      </section>
+
+      <!-- ===== شاشة اللعب ===== -->
+      <section class="screen" id="screen-game">
+        <div class="room-head">
+          <button class="round-btn" id="gameBack" aria-label="رجوع">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <h2 id="gameTitle">لعبة</h2>
+        </div>
+        <div class="game-stage">
+          <div class="q-chars">
+            <div class="qc" id="qTwin"></div>
+            <div class="qc" id="qNono" style="width:64px;"></div>
+          </div>
+          <div class="q-bubble" id="gameQ">سؤال</div>
+          <div class="progress-dots" id="gameDots"></div>
+          <div class="play-area" id="playArea"></div>
+          <p class="feedback" id="gameFeedback" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- ===== دكان نونو ===== -->
+      <section class="screen" id="screen-shop">
+        <div class="room-head">
+          <button class="round-btn" id="shopBack" aria-label="رجوع">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <h2>دكان نونو</h2>
+        </div>
+        <div class="nono-room" id="nonoRoom"></div>
+        <button class="say-bar" id="shopSayBar" style="margin-top:12px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 010 7"/><path d="M18 6a8.5 8.5 0 010 12"/></svg>
+          <span id="shopSayText">اختار حاجة حلوة لنونو على قد نجومك!</span>
+        </button>
+        <h3 class="shop-sec">هدوم نونو</h3>
+        <div class="shop-grid" id="shopClothes"></div>
+        <h3 class="shop-sec">حاجات لأوضة نونو</h3>
+        <div class="shop-grid" id="shopRoomItems"></div>
+      </section>
+    </main>
+
+    <footer class="note">بيت عمر وياسين ومعاهم نونو — لعبة أطفال برسومات أصلية، من غير إعلانات ولا شراء</footer>
+
+    <!-- ===== نافذة إتمام المستوى ===== -->
+    <div class="overlay" id="winOverlay" role="dialog" aria-modal="true" aria-labelledby="winTitle">
+      <div class="win-card">
+        <div class="win-stars" id="winStars"></div>
+        <h2 id="winTitle">أحسنت!</h2>
+        <p id="winText">خلّصت المستوى</p>
+        <div class="win-actions">
+          <button class="btn btn-primary" id="winNext">المستوى اللي بعده</button>
+          <button class="btn btn-ghost" id="winLevels">المستويات</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    "use strict";
+    /* ================= أدوات عامة ================= */
+    const $ = (s, r) => (r || document).querySelector(s);
+    const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+    const AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
+    const toAr = n => String(n).replace(/\d/g, d => AR_DIGITS[+d]);
+    const rand = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
+    const shuffle = arr => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+    const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+    const todayStr = () => { const d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); };
+    const STAR_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.5l-6 3.3 1.3-6.7-5-4.6 6.8-.8z" fill="#ffc93c" stroke="#f0a500" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+    const LOCK_SVG = '<svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2.5" fill="#9a94ad"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="#9a94ad" stroke-width="2.6"/><circle cx="12" cy="15" r="1.8" fill="#fff"/></svg>';
+
+    /* ================= الحفظ على الجهاز ================= */
+    const SAVE_KEY = "bayt-omar-yassin-nono-v1";
+    function defaultSave() {
+      return {
+        stars: 0, sound: true, giftDate: "",
+        streak: { count: 0, last: "" },
+        roomDay: { date: "", living: {}, kitchen: {}, play: {} },
+        levels: { count: {}, memory: {}, pattern: {}, quran: {} },
+        shop: { owned: [], worn: [], placed: [] }
+      };
+    }
+    let save = defaultSave();
+    try {
+      const raw = localStorage.getItem(SAVE_KEY);
+      if (raw) { const p = JSON.parse(raw); save = Object.assign(defaultSave(), p); save.streak = Object.assign({ count: 0, last: "" }, p.streak || {}); save.roomDay = Object.assign(defaultSave().roomDay, p.roomDay || {}); save.levels = Object.assign(defaultSave().levels, p.levels || {}); save.shop = Object.assign(defaultSave().shop, p.shop || {}); }
+    } catch (e) { /* لو الحفظ مش متاح اللعبة تكمل من غيره */ }
+    if (save.roomDay.date !== todayStr()) { save.roomDay = { date: todayStr(), living: {}, kitchen: {}, play: {} }; }
+    function persist() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); } catch (e) {} }
+    function renderStars() { $("#starCount").textContent = toAr(save.stars); }
+    function addStars(n) { save.stars += n; persist(); renderStars(); }
+
+    /* ================= الصوت: قارئ المتصفح + مؤثرات بسيطة ================= */
+    let actx = null;
+    function ac() {
+      if (!actx) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { actx = null; } }
+      if (actx && actx.state === "suspended") actx.resume();
+      return actx;
+    }
+    function tone(freq, t0, dur, type, vol) {
+      if (!save.sound) return;
+      const c = ac(); if (!c) return;
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = type || "sine"; o.frequency.value = freq;
+      const start = c.currentTime + t0;
+      g.gain.setValueAtTime(0.0001, start);
+      g.gain.exponentialRampToValueAtTime(vol || 0.14, start + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+      o.connect(g); g.connect(c.destination);
+      o.start(start); o.stop(start + dur + 0.05);
+    }
+    const sfx = {
+      tap:  () => tone(620, 0, 0.09, "triangle", 0.1),
+      pop:  () => { tone(420, 0, 0.08, "sine", 0.14); tone(760, 0.05, 0.1, "sine", 0.12); },
+      good: () => { tone(523, 0, 0.12, "triangle", 0.15); tone(659, 0.09, 0.12, "triangle", 0.15); tone(784, 0.18, 0.2, "triangle", 0.16); },
+      win:  () => { [523, 659, 784, 1047].forEach((f, i) => tone(f, i * 0.11, 0.22, "triangle", 0.15)); },
+      bad:  () => tone(180, 0, 0.16, "sawtooth", 0.06)
+    };
+    document.addEventListener("pointerdown", () => ac(), { once: true });
+
+    let arVoice = null;
+    function findArVoice() {
+      try {
+        const vs = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+        const ar = vs.filter(v => /^ar[-_]/i.test(v.lang) || /arab/i.test(v.name));
+        /* الأولوية للصوت المصري القاهري، وبعده أي صوت عربي */
+        arVoice =
+          ar.find(v => /^ar[-_]EG/i.test(v.lang)) ||
+          ar.find(v => /egypt|مصر/i.test(v.name)) ||
+          ar[0] || null;
+      } catch (e) { arVoice = null; }
+    }
+    if ("speechSynthesis" in window) { findArVoice(); speechSynthesis.onvoiceschanged = findArVoice; }
+    /* الراوي: صوت حقيقي مسجّل يقرا التعليمات الثابتة، وقارئ الموبايل بديل للنصوص المتولّدة */
+    let lastSpoken = "", lastClip = null, welcomePending = false;
+    const narrAudio = new Audio();
+    narrAudio.preload = "auto";
+    function playClip(name) {
+      if (!save.sound) return false;
+      try {
+        stopSpeak();
+        narrAudio.src = "assets/voice/" + name + ".mp3";
+        narrAudio.currentTime = 0;
+        const p = narrAudio.play();
+        if (p && p.catch) p.catch(() => {});
+        return true;
+      } catch (e) { return false; }
+    }
+    function speak(text, clip) {
+      lastSpoken = text; lastClip = clip || null;
+      if (!save.sound) return;
+      if (clip && playClip(clip)) return;
+      ttsSpeak(text);
+    }
+    function ttsSpeak(text) {
+      if (!("speechSynthesis" in window)) return;
+      try {
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = "ar-EG";
+        if (arVoice) u.voice = arVoice;
+        u.rate = 0.98; u.pitch = 1.05;
+        speechSynthesis.speak(u);
+      } catch (e) { /* الكلام مكتوب على الشاشة دايماً */ }
+    }
+    function stopSpeak() {
+      try { if ("speechSynthesis" in window) speechSynthesis.cancel(); } catch (e) {}
+      try { narrAudio.pause(); } catch (e) {}
+    }
+    document.addEventListener("pointerdown", () => {
+      if (welcomePending) { welcomePending = false; playClip("n_welcome"); }
+    });
+    function praiseLine() { const i = rand(0, PRAISE.length - 1); return { text: PRAISE[i], clip: "n_praise" + (i + 1) }; }
+    function encourageLine() { const i = rand(0, ENCOURAGE.length - 1); return { text: ENCOURAGE[i], clip: "n_enc" + (i + 1) }; }
+
+    const PRAISE = ["أحسنت يا بطل!", "برافو عليك!", "شاطر أوي!", "جدع! إجابتك صح", "عاش يا وحش!", "كده تمام التمام!"];
+    const ENCOURAGE = ["قرّبت أوي! جرّب تاني", "ولا يهمك، ركّز شوية وجرّب تاني", "فكّر تاني يا بطل، انت قدّها", "يلا، انت تقدر تعملها!", "جرّب مرة كمان، قربت توصل خلاص"];
+
+    /* ================= أيقونات SVG ================= */
+    const ICONS = {
+      apple:  '<svg viewBox="0 0 48 48"><path d="M24 14c-2-4-6-6-10-5C7 10 4 17 6 24c2 8 7 15 11 15 2.4 0 3.4-1 7-1s4.6 1 7 1c4 0 9-7 11-15 2-7-1-14-8-15-4-1-8 1-10 5z" fill="#ff5252"/><path d="M24 13c0-4 2-7 6-8" stroke="#7a4b21" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M25 10c4-4 10-4 12-3-1 4-5 7-10 6" fill="#58c24a"/><ellipse cx="16" cy="22" rx="3.4" ry="5" fill="#ff8a80" opacity=".8"/></svg>',
+      banana: '<svg viewBox="0 0 48 48"><path d="M8 10c2 16 12 27 30 28-4 3-10 4-15 2C12 36 5 24 6 12z" fill="#ffd93b"/><path d="M8 10c2 16 12 27 30 28" stroke="#f0a500" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M6 12l3-5 4 2-2 4z" fill="#7a4b21"/></svg>',
+      carrot: '<svg viewBox="0 0 48 48"><path d="M20 20L36 38c2 2 1 6-2 6-8 1-20-8-22-16-1-3 1-6 4-6z" fill="#ff8a3d"/><path d="M18 20c-4-2-6-7-5-11 4 0 7 2 9 5 1-4 4-7 8-7 1 4-1 8-4 10 3 0 5 1 6 3-3 2-8 2-14 0z" fill="#58c24a"/></svg>',
+      bread:  '<svg viewBox="0 0 48 48"><path d="M8 30c-3-1-5-4-5-8 0-6 5-10 11-10h20c6 0 11 4 11 10 0 4-2 7-5 8v6a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3z" fill="#e8a34f"/><path d="M14 19q3 3 6 0M24 19q3 3 6 0M34 19q3 3 6 0" stroke="#b97a28" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>',
+      milk:   '<svg viewBox="0 0 48 48"><path d="M14 16l4-9h12l4 9v24a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3z" fill="#eaf4ff"/><path d="M14 16h20v8H14z" fill="#4a90e2"/><path d="M18 7h12l2 5H16z" fill="#3570b8"/><circle cx="24" cy="33" r="5.5" fill="#fff" stroke="#4a90e2" stroke-width="2.2"/><path d="M21.5 33h5M24 30.5v5" stroke="#4a90e2" stroke-width="2" stroke-linecap="round"/></svg>',
+      star:   '<svg viewBox="0 0 48 48"><path d="M24 5l5.6 11.9 13 1.6-9.6 8.9 2.5 12.9L24 34l-11.5 6.3L15 27.4 5.4 18.5l13-1.6z" fill="#ffc93c" stroke="#f0a500" stroke-width="2.4" stroke-linejoin="round"/></svg>',
+      heart:  '<svg viewBox="0 0 48 48"><path d="M24 41S6 29.5 6 17.6C6 10.6 11.4 6 17.2 6c3 0 5.4 1.5 6.8 3.6C25.4 7.5 27.8 6 30.8 6 36.6 6 42 10.6 42 17.6 42 29.5 24 41 24 41z" fill="#ff6b8a"/></svg>',
+      fish:   '<svg viewBox="0 0 48 48"><path d="M4 24c6-9 14-13 22-13 7 0 13 5 18 13-5 8-11 13-18 13-8 0-16-4-22-13z" fill="#38b6e3"/><path d="M8 24c4-5 8-8 13-9-2 3-3 6-3 9s1 6 3 9c-5-1-9-4-13-9z" fill="#7ed3f7"/><circle cx="35" cy="21" r="2.6" fill="#123"/></svg>',
+      flower: '<svg viewBox="0 0 48 48"><g fill="#ff8fc7"><circle cx="24" cy="11" r="7"/><circle cx="35" cy="19" r="7"/><circle cx="31" cy="31" r="7"/><circle cx="17" cy="31" r="7"/><circle cx="13" cy="19" r="7"/></g><circle cx="24" cy="21" r="6" fill="#ffc93c"/><path d="M24 30v12" stroke="#3da33d" stroke-width="3.4" stroke-linecap="round"/><path d="M24 38c-5 0-8-3-8-6 4 0 7 2 8 6z" fill="#58c24a"/></svg>',
+      moon:   '<svg viewBox="0 0 48 48"><path d="M32 5a18 18 0 1 0 11 27A20 20 0 0 1 32 5z" fill="#ffd93b"/><path d="M38 26l1.2 2.6 2.8.4-2 2 .5 2.8-2.5-1.3-2.5 1.3.5-2.8-2-2 2.8-.4z" fill="#ffb03a"/></svg>',
+      ball:   '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="#fff"/><path d="M24 14l6.5 4.7-2.5 7.6h-8l-2.5-7.6z" fill="#26324a"/><path d="M24 5v9M41 15l-10.5 3.7M38 36l-10-9.7M10 36l10-9.7M7 15l10.5 3.7" stroke="#26324a" stroke-width="2.4"/><circle cx="24" cy="24" r="19" fill="none" stroke="#26324a" stroke-width="2.4"/></svg>',
+      book:   '<svg viewBox="0 0 48 48"><path d="M10 8h24a4 4 0 0 1 4 4v28H14a4 4 0 0 1-4-4z" fill="#e2543e"/><path d="M10 8v28a4 4 0 0 0 4 4h24v-6H16a6 6 0 0 1-6-6z" fill="#c23e2b"/><rect x="17" y="15" width="14" height="4" rx="2" fill="#fff"/><rect x="17" y="22" width="10" height="4" rx="2" fill="#ffd9d2"/></svg>',
+      orange: '<svg viewBox="0 0 48 48"><circle cx="24" cy="27" r="16" fill="#ff9f2e"/><path d="M24 12c0-3 2-5 5-6" stroke="#7a4b21" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M25 11c3-3 8-3 10-2-1 3-4 5-8 5" fill="#58c24a"/><circle cx="18" cy="22" r="3" fill="#ffc06b"/></svg>',
+      grape:  '<svg viewBox="0 0 48 48"><g fill="#8e6cc8"><circle cx="17" cy="20" r="6"/><circle cx="29" cy="20" r="6"/><circle cx="12" cy="29" r="6"/><circle cx="24" cy="29" r="6"/><circle cx="35" cy="29" r="6"/><circle cx="18" cy="38" r="6"/><circle cx="29" cy="38" r="6"/></g><path d="M24 14c0-4 2-6 5-7" stroke="#7a4b21" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M26 8c3-3 8-3 10-2-1 3-4 5-8 4" fill="#58c24a"/></svg>',
+      sun:    '<svg viewBox="0 0 48 48"><g stroke="#f0a500" stroke-width="3.4" stroke-linecap="round"><path d="M24 3v6M24 39v6M3 24h6M39 24h6M9 9l4 4M35 35l4 4M39 9l-4 4M13 35l-4 4"/></g><circle cx="24" cy="24" r="11" fill="#ffd93b"/><circle cx="20" cy="22" r="1.7" fill="#7a4b00"/><circle cx="28" cy="22" r="1.7" fill="#7a4b00"/><path d="M19.5 27q4.5 3.4 9 0" stroke="#7a4b00" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>',
+      glasses:'<svg viewBox="0 0 48 48"><g fill="rgba(120,200,255,.35)" stroke="#26324a" stroke-width="2.8"><circle cx="14" cy="26" r="9"/><circle cx="34" cy="26" r="9"/></g><path d="M23 26h2M5 24L2 18M43 24l3-6" stroke="#26324a" stroke-width="2.8" fill="none" stroke-linecap="round"/></svg>',
+      bow:    '<svg viewBox="0 0 48 48"><path d="M24 24L8 13c-3-1.6-6 1-5.4 4.4L5 29c.5 3.4 4 4.6 6.6 2.8L24 24zm0 0l16-11c3-1.6 6 1 5.4 4.4L43 29c-.5 3.4-4 4.6-6.6 2.8L24 24z" fill="#ff6b8a"/><circle cx="24" cy="24" r="5.4" fill="#e2543e"/></svg>',
+      hat:    '<svg viewBox="0 0 48 48"><path d="M10 30a14 10 0 0 1 28 0z" fill="#fff" stroke="#d8cfc0" stroke-width="2.4"/><circle cx="18" cy="24" r="1.7" fill="#c9bda6"/><circle cx="24" cy="21.6" r="1.7" fill="#c9bda6"/><circle cx="30" cy="24" r="1.7" fill="#c9bda6"/></svg>',
+      cap:    '<svg viewBox="0 0 48 48"><path d="M9 27a15 12 0 0 1 30 0z" fill="#4a90e2"/><path d="M4 27h40a3 3 0 0 1-3 5H7a3 3 0 0 1-3-5z" fill="#3570b8"/><circle cx="24" cy="15.5" r="2.6" fill="#3570b8"/></svg>',
+      crown:  '<svg viewBox="0 0 48 48"><path d="M7 36l-2-20 11 8 8-13 8 13 11-8-2 20z" fill="#ffc93c" stroke="#f0a500" stroke-width="2.4" stroke-linejoin="round"/><circle cx="24" cy="28" r="3" fill="#ff6b8a"/><circle cx="12" cy="31" r="2.2" fill="#38b6e3"/><circle cx="36" cy="31" r="2.2" fill="#38b6e3"/></svg>',
+      herocrown: '<svg viewBox="0 0 48 48"><path d="M7 36l-2-20 11 8 8-13 8 13 11-8-2 20z" fill="#ffd93b" stroke="#e2543e" stroke-width="2.4" stroke-linejoin="round"/><circle cx="24" cy="28" r="3.4" fill="#e2543e"/><circle cx="12" cy="31" r="2.2" fill="#17b890"/><circle cx="36" cy="31" r="2.2" fill="#17b890"/></svg>',
+      plant:  '<svg viewBox="0 0 48 48"><path d="M13 30h22l-2.6 13a3 3 0 0 1-3 2.4H18.6a3 3 0 0 1-3-2.4z" fill="#e07840"/><path d="M24 30c0-7-1-12-6-16 6-1 9 3 9 8 2-5 6-7 10-6-1 5-4 9-9 11" fill="#58c24a"/><path d="M24 30c-1-5-4-8-9-9 1 5 4 8 9 9z" fill="#3da33d"/></svg>',
+      picture:'<svg viewBox="0 0 48 48"><rect x="6" y="8" width="36" height="30" rx="3" fill="#fff" stroke="#b57e4f" stroke-width="3.4"/><circle cx="34" cy="16" r="3.6" fill="#ffc93c"/><path d="M9 35l9-11 6 7 5-5 10 9z" fill="#58c24a"/></svg>',
+      balloons:'<svg viewBox="0 0 48 48"><path d="M24 30q-2 6 1 9M15 32q0 5 3 8M34 31q1 6-2 9" stroke="#9a94ad" stroke-width="1.8" fill="none"/><ellipse cx="15" cy="20" rx="8" ry="11" fill="#ff6b8a"/><ellipse cx="33" cy="18" rx="8" ry="11" fill="#4a90e2"/><ellipse cx="24" cy="13" rx="8" ry="11" fill="#ffc93c"/><path d="M13 31h4l-2 3zM31 29h4l-2 3zM22 24h4l-2 3z" fill="#3c3a4d"/></svg>',
+      lamp:   '<svg viewBox="0 0 48 48"><path d="M17 6h14l6 14H11z" fill="#ffb03a"/><rect x="22.6" y="20" width="2.8" height="18" fill="#7a4b21"/><path d="M13 41h22" stroke="#7a4b21" stroke-width="3.4" stroke-linecap="round"/><circle cx="24" cy="15" r="4" fill="#ffe28a"/></svg>',
+      tank:   '<svg viewBox="0 0 48 48"><rect x="5" y="10" width="38" height="27" rx="4" fill="#bdeaff"/><path d="M5 30q7-4 13 0t13 0 12 0v3a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z" fill="#4db8ff"/><path d="M12 22c3-4 7-5 10-4 3 1 5 3 6 4-1 1-3 3-6 4-3 1-7 0-10-4z" fill="#ff8a3d"/><circle cx="24" cy="21" r="1.3" fill="#123"/><path d="M36 32c0-4 1-6 3-8M9 33c0-3-1-5-2-6" stroke="#3da33d" stroke-width="2.4" fill="none" stroke-linecap="round"/><rect x="14" y="39" width="20" height="3.4" rx="1.7" fill="#7a4b21"/></svg>',
+      rug:    '<svg viewBox="0 0 48 48"><ellipse cx="24" cy="26" rx="21" ry="13" fill="#ff8fab"/><ellipse cx="24" cy="26" rx="15" ry="8.6" fill="#ffd9e2"/><ellipse cx="24" cy="26" rx="8.6" ry="4.8" fill="#ff8fab"/></svg>'
+    };
+    function shapeSVG(kind, color) {
+      if (kind === "circle") return '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="17" fill="' + color + '"/></svg>';
+      if (kind === "square") return '<svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="6" fill="' + color + '"/></svg>';
+      if (kind === "tri") return '<svg viewBox="0 0 48 48"><path d="M24 7l17 32H7z" fill="' + color + '" stroke-linejoin="round"/></svg>';
+      if (kind === "star") return '<svg viewBox="0 0 48 48"><path d="M24 5l5.6 11.9 13 1.6-9.6 8.9 2.5 12.9L24 34l-11.5 6.3L15 27.4 5.4 18.5l13-1.6z" fill="' + color + '" stroke-linejoin="round"/></svg>';
+      if (kind === "heart") return '<svg viewBox="0 0 48 48"><path d="M24 41S6 29.5 6 17.6C6 10.6 11.4 6 17.2 6c3 0 5.4 1.5 6.8 3.6C25.4 7.5 27.8 6 30.8 6 36.6 6 42 10.6 42 17.6 42 29.5 24 41 24 41z" fill="' + color + '"/></svg>';
+      return ICONS[kind] || ICONS.star;
+    }
+    function shapeOutlineSVG(kind, color) {
+      if (kind === "circle") return '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" fill="rgba(255,255,255,.45)" stroke="' + color + '" stroke-width="3.4" stroke-dasharray="5 5"/></svg>';
+      if (kind === "square") return '<svg viewBox="0 0 48 48"><rect x="9" y="9" width="30" height="30" rx="6" fill="rgba(255,255,255,.45)" stroke="' + color + '" stroke-width="3.4" stroke-dasharray="5 5"/></svg>';
+      if (kind === "star") return '<svg viewBox="0 0 48 48"><path d="M24 6l5.3 11.3 12.3 1.5-9.1 8.4 2.4 12.2L24 33.6l-10.9 5.8 2.4-12.2-9.1-8.4 12.3-1.5z" fill="rgba(255,255,255,.45)" stroke="' + color + '" stroke-width="3.2" stroke-dasharray="5 5" stroke-linejoin="round"/></svg>';
+      if (kind === "heart") return '<svg viewBox="0 0 48 48"><path d="M24 40S7.5 29.3 7.5 18.2C7.5 11.9 12.2 7.6 17.4 7.6c2.7 0 4.9 1.3 6.6 3.3 1.7-2 3.9-3.3 6.6-3.3 5.2 0 9.9 4.3 9.9 10.6C40.5 29.3 24 40 24 40z" fill="rgba(255,255,255,.45)" stroke="' + color + '" stroke-width="3.2" stroke-dasharray="5 5" stroke-linejoin="round"/></svg>';
+      return '<svg viewBox="0 0 48 48"><path d="M24 8l16 31H8z" fill="rgba(255,255,255,.45)" stroke="' + color + '" stroke-width="3.4" stroke-dasharray="5 5" stroke-linejoin="round"/></svg>';
+    }
+
+    /* ================= الشخصيات (رسوم أصلية) ================= */
+    /* عمر: قميص وكاب أزرق — ياسين: قميص وكاب برتقالي */
+    function boySVG(who) {
+      const omar = who === "omar";
+      const c = omar ? "#3f8ef7" : "#ff8a3d";
+      const cd = omar ? "#2b6fd6" : "#e56f1d";
+      const pants = omar ? "#7a4b21" : "#3f6fd1";
+      return '<svg viewBox="0 0 48 76" role="img" aria-label="' + (omar ? "عمر" : "ياسين") + '">'
+        + '<ellipse cx="24" cy="72" rx="13" ry="3.4" fill="rgba(60,58,77,.16)"/>'
+        + '<rect x="17" y="52" width="6" height="15" rx="3" fill="' + pants + '"/><rect x="25" y="52" width="6" height="15" rx="3" fill="' + pants + '"/>'
+        + '<ellipse cx="19" cy="68.5" rx="4.6" ry="2.8" fill="#fff" stroke="#d8cfc0" stroke-width="1.4"/><ellipse cx="29" cy="68.5" rx="4.6" ry="2.8" fill="#fff" stroke="#d8cfc0" stroke-width="1.4"/>'
+        + '<path d="M13 36q11-5 22 0l-1.6 20q-9.4 3-18.8 0z" fill="' + c + '"/>'
+        + '<path d="M24 40.5l1.7 3.7 4 .5-3 2.8.8 4-3.5-2-3.5 2 .8-4-3-2.8 4-.5z" fill="#ffc93c"/>'
+        + '<path d="M13.5 38q-5 3-5.4 10" stroke="#d99a5f" stroke-width="5" fill="none" stroke-linecap="round"/>'
+        + '<path d="M34.5 38q5.4 2.6 6 9.4" stroke="#d99a5f" stroke-width="5" fill="none" stroke-linecap="round"/>'
+        + '<circle cx="24" cy="22" r="14.5" fill="#d99a5f"/>'
+        + '<circle cx="10.2" cy="23" r="2.7" fill="#d99a5f"/><circle cx="37.8" cy="23" r="2.7" fill="#d99a5f"/>'
+        + '<path d="M10.6 16.5a13.4 12 0 0 1 26.8 0z" fill="' + cd + '"/>'
+        + '<circle cx="24" cy="5.4" r="2.2" fill="' + c + '"/>'
+        + '<ellipse cx="24" cy="16.8" rx="15" ry="3.2" fill="' + c + '"/>'
+        + '<g fill="#241a12"><circle cx="13.6" cy="19.8" r="2.7"/><circle cx="18.6" cy="18.4" r="2.9"/><circle cx="24" cy="18" r="3"/><circle cx="29.4" cy="18.4" r="2.9"/><circle cx="34.4" cy="19.8" r="2.7"/></g>'
+        + '<path d="M15.6 20.6q3-1.8 6-.6M26.4 20q3-1.2 6 .6" stroke="#4a2c14" stroke-width="1.7" fill="none" stroke-linecap="round"/>'
+        + '<circle cx="18.6" cy="23.4" r="2.5" fill="#fff"/><circle cx="29.4" cy="23.4" r="2.5" fill="#fff"/>'
+        + '<circle cx="18.9" cy="23.9" r="1.45" fill="#26324a"/><circle cx="29.1" cy="23.9" r="1.45" fill="#26324a"/>'
+        + '<circle cx="19.4" cy="23.3" r=".55" fill="#fff"/><circle cx="29.6" cy="23.3" r=".55" fill="#fff"/>'
+        + '<path d="M24 25.8q1.4 1.8-.2 3" stroke="#b97a3e" stroke-width="1.6" fill="none" stroke-linecap="round"/>'
+        + '<circle cx="14.6" cy="28.4" r="2.3" fill="#ff8a70" opacity=".6"/><circle cx="33.4" cy="28.4" r="2.3" fill="#ff8a70" opacity=".6"/>'
+        + '<path d="M19.8 28.7q4.2 3.6 8.4 0" stroke="#8a4b1d" stroke-width="1.9" fill="none" stroke-linecap="round"/>'
+        + '</svg>';
+    }
+    /* نونو: كائن أخضر مائل للأزرق لطيف */
+    function nonoSVG(worn) {
+      worn = worn || [];
+      const has = id => worn.indexOf(id) >= 0;
+      let acc = "";
+      if (has("hat")) acc += '<g transform="translate(9.5,0) scale(0.6)"><path d="M10 30a14 10 0 0 1 28 0z" fill="#fff" stroke="#d8cfc0" stroke-width="3"/><circle cx="18" cy="24" r="2" fill="#c9bda6"/><circle cx="24" cy="21.4" r="2" fill="#c9bda6"/><circle cx="30" cy="24" r="2" fill="#c9bda6"/></g>';
+      if (has("cap")) acc += '<g transform="translate(7.4,-1) scale(0.66)">' + ICONS.cap.replace('<svg viewBox="0 0 48 48">', "").replace("</svg>", "") + '</g>';
+      if (has("crown")) acc += '<g transform="translate(10.5,-4.5) scale(0.56)">' + ICONS.crown.replace('<svg viewBox="0 0 48 48">', "").replace("</svg>", "") + '</g>';
+      if (has("herocrown")) acc += '<g transform="translate(10.5,-4.5) scale(0.56)">' + ICONS.herocrown.replace('<svg viewBox="0 0 48 48">', "").replace("</svg>", "") + '</g>';
+      if (has("bow")) acc += '<g transform="translate(31,3) scale(0.42) rotate(18 24 24)">' + ICONS.bow.replace('<svg viewBox="0 0 48 48">', "").replace("</svg>", "") + '</g>';
+      if (has("glasses")) acc += '<g transform="translate(4.4,11.5) scale(0.82)">' + ICONS.glasses.replace('<svg viewBox="0 0 48 48">', "").replace("</svg>", "") + '</g>';
+      return '<svg viewBox="0 0 48 56" role="img" aria-label="نونو">'
+        + '<ellipse cx="24" cy="52.6" rx="13" ry="3" fill="rgba(60,58,77,.16)"/>'
+        + '<path d="M32 6.5v4" stroke="#0e8f6e" stroke-width="2.4" stroke-linecap="round"/>'
+        + '<path d="M32 3.4l1 2.2 2.4.3-1.8 1.7.5 2.4L32 8.9 29.9 10l.5-2.4-1.8-1.7 2.4-.3z" fill="#ffc93c"/>'
+        + '<g fill="#241a12"><circle cx="13.6" cy="12.8" r="3"/><circle cx="19" cy="10.8" r="3.2"/><circle cx="24.6" cy="11" r="3"/></g>'
+        + '<ellipse cx="15" cy="47" rx="4.6" ry="3" fill="#0e8f6e"/><ellipse cx="33" cy="47" rx="4.6" ry="3" fill="#0e8f6e"/>'
+        + '<path d="M7 30q-4.6 2-4.4 7" stroke="#2ec4a6" stroke-width="5" fill="none" stroke-linecap="round"/>'
+        + '<path d="M41 30q4.6 2 4.4 7" stroke="#2ec4a6" stroke-width="5" fill="none" stroke-linecap="round"/>'
+        + '<ellipse cx="24" cy="30" rx="17.5" ry="19" fill="#2ec4a6"/>'
+        + '<ellipse cx="24" cy="36" rx="10.5" ry="11.5" fill="#c9f2e4"/>'
+        + '<path d="M24 30.5l1.9 4 4.4.5-3.2 3 .9 4.3-4-2.2-4 2.2.9-4.3-3.2-3 4.4-.5z" fill="#ffc93c"/>'
+        + '<path d="M13.8 21.4q3.6-2 7.2-.6M27 20.8q3.6-1.4 7.2.6" stroke="#0b6e54" stroke-width="1.8" fill="none" stroke-linecap="round"/>'
+        + '<circle cx="17.6" cy="26" r="3.6" fill="#fff"/><circle cx="30.4" cy="26" r="3.6" fill="#fff"/>'
+        + '<circle cx="17.9" cy="26.6" r="2" fill="#26324a"/><circle cx="30.1" cy="26.6" r="2" fill="#26324a"/>'
+        + '<circle cx="18.6" cy="25.6" r=".75" fill="#fff"/><circle cx="30.8" cy="25.6" r=".75" fill="#fff"/>'
+        + '<circle cx="11.8" cy="32" r="2.6" fill="#ff8a70" opacity=".65"/><circle cx="36.2" cy="32" r="2.6" fill="#ff8a70" opacity=".65"/>'
+        + '<path d="M20 32.4q4 3.4 8 0" stroke="#0b6e54" stroke-width="2" fill="none" stroke-linecap="round"/>'
+        + acc
+        + '</svg>';
+    }
+
+    /* ================= التنقّل ================= */
+    let cleanupCurrent = null;
+    function showScreen(id) {
+      if (cleanupCurrent) { cleanupCurrent(); cleanupCurrent = null; }
+      stopSpeak();
+      if (typeof stopRecite === "function") stopRecite();
+      $$(".screen").forEach(s => s.classList.toggle("active", s.id === id));
+      window.scrollTo({ top: 0 });
+    }
+    $("#homeBtn").addEventListener("click", () => { sfx.tap(); showScreen("screen-home"); renderHome(); });
+    function syncSoundIcon() {
+      $("#soundOnIcon").style.display = save.sound ? "" : "none";
+      $("#soundOffIcon").style.display = save.sound ? "none" : "";
+    }
+    $("#soundBtn").addEventListener("click", () => {
+      save.sound = !save.sound; persist(); syncSoundIcon();
+      if (!save.sound) stopSpeak(); else { sfx.pop(); if (lastSpoken) speak(lastSpoken, lastClip); }
+    });
+
+    function confetti() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const colors = ["#ff6b5e", "#ffc93c", "#17b890", "#38b6e3", "#ff8fc7"];
+      for (let i = 0; i < 40; i++) {
+        const d = document.createElement("div");
+        d.className = "confetti";
+        const sz = rand(7, 13);
+        d.style.cssText = "right:" + Math.random() * 100 + "vw;width:" + sz + "px;height:" + sz * rand(6, 12) / 10 + "px;background:" + pick(colors) + ";animation-duration:" + (1.4 + Math.random() * 1.4) + "s;animation-delay:" + Math.random() * 0.35 + "s;transform:rotate(" + rand(0, 360) + "deg)";
+        document.body.appendChild(d);
+        setTimeout(() => d.remove(), 3400);
+      }
+    }
+    function floatFx(scene, xPct, yPct, html, color) {
+      const d = document.createElement("div");
+      d.className = "float-fx";
+      d.style.right = xPct + "%"; d.style.bottom = yPct + "%";
+      d.style.color = color || "#e2543e"; d.style.fontSize = "1.5rem";
+      d.innerHTML = html;
+      scene.appendChild(d);
+      setTimeout(() => d.remove(), 1100);
+    }
+</script>
+
+    <script>
+    "use strict";
+    /* ================= الشاشة الرئيسية ================= */
+    const GREETINGS = {
+      omar: "أهلاً بيك! أنا عمر، بحب ألعب وأرسم أوي!",
+      yassin: "أهلاً بيك! أنا ياسين، بحب الألغاز والحفظ أوي!",
+      nono: "أهلاً بيك في بيتنا! أنا نونو، صاحبك اللي هيلعب معاك على طول"
+    };
+    function renderHome() {
+      renderStars();
+      $("#trio").innerHTML =
+        '<button class="pal" data-pal="omar">' + boySVG("omar") + '<span class="nm">عمر</span></button>' +
+        '<button class="pal" data-pal="nono">' + nonoSVG(save.shop.worn) + '<span class="nm">نونو</span></button>' +
+        '<button class="pal" data-pal="yassin">' + boySVG("yassin") + '<span class="nm">ياسين</span></button>';
+      const GREET_CLIPS = { omar: "n_greet_omar", yassin: "n_greet_yassin", nono: "n_greet_nono" };
+      $$("#trio .pal").forEach(b => b.addEventListener("click", () => {
+        b.classList.remove("waving"); void b.offsetWidth; b.classList.add("waving");
+        b.classList.remove("hopping"); void b.offsetWidth; b.classList.add("hopping");
+        setTimeout(() => b.classList.remove("hopping"), 600);
+        sfx.pop();
+        const g = GREETINGS[b.dataset.pal];
+        $("#greetText").textContent = g;
+        speak(g, GREET_CLIPS[b.dataset.pal]);
+      }));
+      const got = save.giftDate === todayStr();
+      $("#giftBtn").disabled = got;
+      $("#giftBtn").textContent = got ? "خدتها ✓" : "خد الهدية";
+      const yd = new Date(); yd.setDate(yd.getDate() - 1);
+      const yStr = yd.getFullYear() + "-" + (yd.getMonth() + 1) + "-" + yd.getDate();
+      const bonusTomorrow = save.streak.count >= 2 && save.streak.last === yStr;
+      $("#giftTitle").textContent = bonusTomorrow ? "هدية النهاردة: تلات نجوم للمواظبين!" : "هدية النهاردة: نجمتين";
+      $("#giftState").textContent = got ? "خدت هدية النهاردة، تعالى بكرة وكبّر مواظبتك!" : "خد هديتك كل يوم!";
+      const sc = save.streak.count;
+      $("#streakLine").textContent = sc > 0
+        ? "واظبت " + toAr(sc) + (sc === 1 ? " يوم" : " أيام") + " ورا بعض" + (sc >= 7 ? " — تاج الأبطال اتفتح في دكان نونو!" : " — كمّل " + toAr(7) + " أيام وافتح تاج الأبطال في دكان نونو")
+        : "خد هديتك كل يوم وكمّل ٧ أيام ورا بعض عشان تفتح تاج الأبطال في الدكان";
+      const rd = save.roomDay;
+      const cnt = (obj, keys) => keys.filter(k => obj[k]).length;
+      const lvStars = g => Object.values(save.levels[g]).reduce((a, b) => a + b, 0);
+      const tiles = [
+        { id: "living", cls: "t-living", name: "أوضة المعيشة", prog: "⭐ " + toAr(cnt(rd.living, ["ball", "book", "lamp", "tv", "window"])) + " / " + toAr(5),
+          icon: '<svg viewBox="0 0 48 48"><rect x="5" y="20" width="38" height="16" rx="6" fill="#fff"/><rect x="8" y="12" width="32" height="12" rx="6" fill="#e8f6ff"/><rect x="10" y="36" width="5" height="6" fill="#fff"/><rect x="33" y="36" width="5" height="6" fill="#fff"/><circle cx="38" cy="8" r="4" fill="#ffd93b"/></svg>' },
+        { id: "kitchen", cls: "t-kitchen", name: "المطبخ", prog: "⭐ " + toAr(cnt(rd.kitchen, ["omar", "yassin", "fridge"])) + " / " + toAr(3),
+          icon: '<svg viewBox="0 0 48 48"><path d="M10 20a14 10 0 0 1 28 0z" fill="#fff"/><rect x="6" y="20" width="36" height="5" rx="2.5" fill="#fff"/><path d="M17 8q2 3 0 5M24 7q2 3 0 5M31 8q2 3 0 5" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><rect x="12" y="30" width="24" height="9" rx="3" fill="#fff" opacity=".85"/></svg>' },
+        { id: "play", cls: "t-play", name: "أوضة اللعب", prog: "⭐ " + toAr(cnt(rd.play, ["circle", "square", "tri", "star", "heart"])) + " / " + toAr(5),
+          icon: '<svg viewBox="0 0 48 48"><path d="M24 6l14 24H10z" fill="#ffd93b"/><circle cx="13" cy="38" r="7" fill="#ff5252"/><rect x="30" y="31" width="13" height="13" rx="3" fill="#4a90e2"/></svg>' },
+        { id: "puzzles", cls: "t-puzzles", name: "محطة الألغاز", prog: "⭐ " + toAr(lvStars("count") + lvStars("memory") + lvStars("pattern") + lvStars("quran")) + " / " + toAr(93),
+          icon: '<svg viewBox="0 0 48 48"><path d="M18 6a8 8 0 0 1 8 8c5 0 8 3 8 7v3h3.4A7.6 7.6 0 0 1 45 31.6c0 2.4-1.2 4.4-3 5.7L45 45H3l3-7.7A7.6 7.6 0 0 1 4.6 24C4.6 19 8 16 13 16h1v-2A8 8 0 0 1 18 6z" fill="#fff" opacity=".95"/><circle cx="17" cy="28" r="3" fill="#ff6b8a"/><circle cx="30" cy="34" r="3" fill="#ff6b8a"/></svg>' },
+        { id: "shop", cls: "t-shop wide", name: "دكان نونو", prog: "عندك " + toAr(save.shop.owned.length) + " حاجة",
+          icon: '<svg viewBox="0 0 48 48"><path d="M8 18l3-9h26l3 9" fill="#fff"/><path d="M8 18a5 5 0 0 0 10 0 5 5 0 0 0 10 0 5 5 0 0 0 10 0" fill="none" stroke="#fff" stroke-width="3.4"/><path d="M11 26v13a3 3 0 0 0 3 3h20a3 3 0 0 0 3-3V26" fill="#fff" opacity=".92"/><rect x="20" y="32" width="8" height="10" rx="2" fill="#f5a623"/></svg>' }
+      ];
+      $("#homeTiles").innerHTML = tiles.map(t =>
+        '<button class="tile ' + t.cls + '" data-tile="' + t.id + '">' + t.icon +
+        '<span class="tt">' + t.name + '</span><span class="tp">' + t.prog + '</span></button>').join("");
+      $$("#homeTiles [data-tile]").forEach(b => b.addEventListener("click", () => {
+        sfx.tap();
+        const id = b.dataset.tile;
+        if (id === "puzzles") { showScreen("screen-puzzles"); renderGameList(); }
+        else if (id === "shop") { openShop(); }
+        else openRoom(id);
+      }));
+    }
+    $("#greetBar").addEventListener("click", () => { sfx.tap(); speak($("#greetText").textContent); });
+    $("#giftBtn").addEventListener("click", () => {
+      if (save.giftDate === todayStr()) return;
+      const yd = new Date(); yd.setDate(yd.getDate() - 1);
+      const yStr = yd.getFullYear() + "-" + (yd.getMonth() + 1) + "-" + yd.getDate();
+      save.streak.count = save.streak.last === yStr ? save.streak.count + 1 : 1;
+      save.streak.last = todayStr();
+      save.giftDate = todayStr();
+      const bonus = save.streak.count >= 3;
+      addStars(bonus ? 3 : 2);
+      sfx.win(); confetti();
+      const msg = bonus ? "هدية النهاردة وصلت: تلات نجوم عشان انت مواظب!" : "هدية النهاردة وصلت: نجمتين!";
+      $("#greetText").textContent = msg;
+      speak(msg, bonus ? "n_gift3" : "n_gift");
+      renderHome();
+    });
+
+    /* ================= محرك السحب والإفلات ================= */
+    function attachDrag(scene, opts) {
+      let ds = null;
+      function info(el) {
+        if (!el.dataset.target) return null;
+        const target = scene.querySelector(el.dataset.target);
+        if (!target) return null;
+        const tr = target.getBoundingClientRect(), r = el.getBoundingClientRect();
+        const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        const padX = Math.max(tr.width * 0.6, 36), padY = Math.max(tr.height * 0.7, 36);
+        const hit = cx >= tr.left - padX && cx <= tr.right + padX && cy >= tr.top - padY && cy <= tr.bottom + padY;
+        const near = cx >= tr.left - padX * 2.1 && cx <= tr.right + padX * 2.1 && cy >= tr.top - padY * 2.1 && cy <= tr.bottom + padY * 2.1;
+        return { target, tr, r, hit, near };
+      }
+      function onDown(e) {
+        const el = e.target.closest(".drag");
+        if (!el || el.classList.contains("placed")) return;
+        e.preventDefault();
+        const r = el.getBoundingClientRect();
+        ds = { el, dx: e.clientX - r.left, dy: e.clientY - r.top, homeR: el.style.right, homeB: el.style.bottom };
+        el.classList.add("dragging");
+        scene.classList.add("hinting");
+        try { el.setPointerCapture && el.setPointerCapture(e.pointerId); } catch (err) {}
+        if (opts.onPick) opts.onPick(el);
+      }
+      function onMove(e) {
+        if (!ds) return;
+        const el = ds.el, sr = scene.getBoundingClientRect();
+        const x = e.clientX - sr.left - ds.dx, y = e.clientY - sr.top - ds.dy;
+        el.style.right = Math.max(0, Math.min(94, (sr.width - x - el.offsetWidth) / sr.width * 100)) + "%";
+        el.style.bottom = Math.max(0, Math.min(92, (sr.height - y - el.offsetHeight) / sr.height * 100)) + "%";
+        const inf = info(el);
+        $$(".target-zone", scene).forEach(z => z.classList.toggle("hot", !!inf && inf.hit && z === inf.target));
+      }
+      function onUp() {
+        if (!ds) return;
+        const el = ds.el, home = { r: ds.homeR, b: ds.homeB };
+        el.classList.remove("dragging");
+        el.classList.add("returning");
+        setTimeout(() => el.classList.remove("returning"), 500);
+        scene.classList.remove("hinting");
+        $$(".target-zone", scene).forEach(z => z.classList.remove("hot"));
+        const inf = info(el);
+        ds = null;
+        if (inf && inf.hit) {
+          const sr = scene.getBoundingClientRect();
+          const cx = (inf.tr.left + inf.tr.width / 2 - sr.left) / sr.width * 100;
+          const cyB = (sr.bottom - (inf.tr.top + inf.tr.height / 2)) / sr.height * 100;
+          el.style.right = "calc(" + cx + "% - " + el.offsetWidth / 2 + "px)";
+          el.style.bottom = "calc(" + cyB + "% - " + el.offsetHeight / 2 + "px)";
+          if (opts.onPlace) opts.onPlace(el, inf.target);
+        } else if (opts.onMiss) {
+          opts.onMiss(el, home, inf);
+        } else {
+          el.style.right = home.r; el.style.bottom = home.b;
+        }
+      }
+      scene.addEventListener("pointerdown", onDown);
+      scene.addEventListener("pointermove", onMove);
+      scene.addEventListener("pointerup", onUp);
+      scene.addEventListener("pointercancel", onUp);
+      return () => {
+        scene.removeEventListener("pointerdown", onDown);
+        scene.removeEventListener("pointermove", onMove);
+        scene.removeEventListener("pointerup", onUp);
+        scene.removeEventListener("pointercancel", onUp);
+      };
+    }
+    function sendHome(el, home) { el.style.right = home.r; el.style.bottom = home.b; }
+    function shakeBack(el, home) {
+      sendHome(el, home);
+      el.classList.remove("shake"); void el.offsetWidth; el.classList.add("shake");
+      sfx.bad();
+    }
+
+    /* ================= الغرف ================= */
+    const ROOM_DEFS = {
+      living: { name: "أوضة المعيشة", say: "يلا نرتّب الأوضة ونشغّل النور والتلفزيون", clip: "n_room_living", tasks: ["ball", "book", "lamp", "tv", "window"], build: buildLiving },
+      kitchen: { name: "المطبخ", say: "أكّل عمر وياسين الأكل اللي نفسهم فيه", clip: "n_room_kitchen", tasks: ["omar", "yassin", "fridge"], build: buildKitchen },
+      play: { name: "أوضة اللعب", say: "حط كل شكل في مكانه الصح", clip: "n_room_play", tasks: ["circle", "square", "tri", "star", "heart"], build: buildPlay }
+    };
+    let roomSay = "", roomClip = null;
+    function setRoomSay(text, clip) { roomSay = text; roomClip = clip || null; $("#roomSayText").textContent = text; }
+    $("#roomSayBar").addEventListener("click", () => { sfx.tap(); if (roomSay) speak(roomSay, roomClip); });
+    $("#roomBack").addEventListener("click", () => { sfx.tap(); showScreen("screen-home"); renderHome(); });
+
+    function openRoom(id) {
+      const def = ROOM_DEFS[id];
+      showScreen("screen-room");
+      $("#roomTitle").textContent = def.name;
+      $("#roomNote").textContent = "";
+      const wrap = $("#sceneWrap");
+      wrap.innerHTML = "";
+      const scene = document.createElement("div");
+      scene.className = "scene";
+      wrap.appendChild(scene);
+      const ctx = { scene, roomId: id, done: Object.assign({}, save.roomDay[id]) };
+      renderTaskStars(id, ctx);
+      def.build(ctx);
+      setRoomSay(def.say, def.clip);
+      speak(def.say, def.clip);
+    }
+    function renderTaskStars(id, ctx) {
+      const def = ROOM_DEFS[id];
+      $("#taskStars").innerHTML = def.tasks.map(t =>
+        '<span class="' + (ctx.done[t] ? "" : "off") + '" data-ts="' + t + '">' + STAR_SVG + "</span>").join("");
+    }
+    function markTaskDone(ctx, task, xPct, yPct) {
+      const first = !ctx.done[task];
+      ctx.done[task] = true;
+      if (first) {
+        save.roomDay[ctx.roomId][task] = true; addStars(1);
+        const span = $('#taskStars [data-ts="' + task + '"]');
+        if (span) { span.classList.remove("off"); span.classList.add("just"); }
+        floatFx(ctx.scene, xPct, yPct, "+١ ⭐", "#f0a500");
+      }
+      const def = ROOM_DEFS[ctx.roomId];
+      if (def.tasks.every(t => ctx.done[t])) {
+        $("#roomNote").textContent = "برافو! خلّصت كل مهام " + def.name + " النهاردة";
+      }
+      return first;
+    }
+    function cheerActors(scene) {
+      $$(".actor", scene).forEach(a => {
+        a.classList.remove("cheer"); void a.offsetWidth; a.classList.add("cheer");
+        setTimeout(() => a.classList.remove("cheer"), 620);
+      });
+    }
+    function roomPraise(ctx, task, x, y) {
+      const first = markTaskDone(ctx, task, x, y);
+      cheerActors(ctx.scene);
+      if (first) { sfx.good(); speak("أحسنت يا بطل! كسبت نجمة!", "n_praise_star"); }
+      else { sfx.pop(); const p = praiseLine(); speak(p.text, p.clip); }
+    }
+
+    /* ---------- أوضة المعيشة ---------- */
+    function buildLiving(ctx) {
+      const s = ctx.scene;
+      s.innerHTML =
+        '<svg class="bg" viewBox="0 0 400 310" preserveAspectRatio="none" aria-hidden="true">' +
+        '<rect width="400" height="228" fill="#ffe3c2"/><rect y="228" width="400" height="82" fill="#c98d5a"/>' +
+        '<g id="winPic"><rect x="22" y="34" width="86" height="76" rx="8" fill="#aee7ff"/><circle cx="88" cy="50" r="9" fill="#ffd93b"/><circle cx="40" cy="88" r="6" fill="#fff" opacity=".85"/><circle cx="57" cy="95" r="4.6" fill="#fff" opacity=".85"/></g><rect x="22" y="34" width="86" height="76" rx="8" fill="none" stroke="#fff" stroke-width="6"/><path d="M65 34v76M22 72h86" stroke="#fff" stroke-width="5"/>' +
+        '<rect x="196" y="52" width="118" height="10" rx="5" fill="#a9805a"/><rect x="212" y="62" width="8" height="12" fill="#7a5a38"/><rect x="290" y="62" width="8" height="12" fill="#7a5a38"/>' +
+        '<circle cx="255" cy="40" r="11" fill="#58c24a"/><rect x="246" y="46" width="18" height="9" rx="2" fill="#e07840"/>' +
+        '<rect x="104" y="168" width="192" height="62" rx="16" fill="#17a589"/><rect x="96" y="140" width="208" height="48" rx="16" fill="#1db99a"/><rect x="192" y="142" width="7" height="86" fill="#12876d" opacity=".55"/>' +
+        '<rect x="18" y="238" width="72" height="34" rx="8" fill="#b5522f"/><path d="M14 240h80l-5-12H19z" fill="#cd6a41"/>' +
+        "</svg>" +
+        '<div class="target-zone" data-zone="basket" style="right:76%;bottom:9%;width:23%;height:18%;"></div>' +
+        '<div class="target-zone" data-zone="shelf" style="right:22%;bottom:74%;width:29%;height:11%;"></div>' +
+        '<div class="hotspot" data-act="tv" style="right:3%;bottom:27%;width:26%;height:30%;">' +
+          '<svg viewBox="0 0 100 100"><rect x="4" y="10" width="92" height="62" rx="8" fill="#37415e"/><g id="tvPic"></g><rect x="40" y="74" width="20" height="8" fill="#37415e"/><rect x="26" y="82" width="48" height="6" rx="3" fill="#37415e"/></svg></div>' +
+        '<div class="hotspot" data-act="lamp" style="right:85%;bottom:12%;width:13%;height:46%;">' +
+          '<svg viewBox="0 0 60 160"><path d="M18 8h24l8 30H10z" fill="#ffb03a"/><rect x="28" y="38" width="4" height="104" fill="#7a5a38"/><path d="M12 148h36" stroke="#7a5a38" stroke-width="6" stroke-linecap="round"/><circle cx="30" cy="26" r="7" fill="#ffe28a"/></svg></div>' +
+        '<div class="hotspot" data-act="window" style="right:72.5%;bottom:64%;width:22%;height:25%;"></div>' +
+        '<div class="lamp-glow" data-glow style="right:76%;bottom:38%;width:34%;height:42%;"></div>' +
+        '<div class="actor" style="right:31%;bottom:24%;width:19%;">' + boySVG("omar") + "</div>" +
+        '<div class="actor" style="right:50.5%;bottom:24%;width:19%;">' + boySVG("yassin") + "</div>" +
+        '<div class="drag" data-target="[data-zone=basket]" data-task="ball" style="right:66%;bottom:5%;width:15%;">' + ICONS.ball + "</div>" +
+        '<div class="drag" data-target="[data-zone=shelf]" data-task="book" style="right:44%;bottom:4%;width:13%;">' + ICONS.book + "</div>";
+      const tvPic = $("#tvPic", s);
+      let tvIdx = 0;
+      tvPic.innerHTML = '<rect x="10" y="16" width="80" height="52" rx="4" fill="#7ed3f7"/><circle cx="72" cy="27" r="7" fill="#ffd93b"/><path d="M10 58l18-16 12 9 13-12 27 23v6H10z" fill="#58c24a"/>';
+      const TV_SIMPLE = [
+        '<rect x="10" y="16" width="80" height="52" rx="4" fill="#7ed3f7"/><circle cx="72" cy="27" r="7" fill="#ffd93b"/><path d="M10 58l18-16 12 9 13-12 27 23v6H10z" fill="#58c24a"/>',
+        '<rect x="10" y="16" width="80" height="52" rx="4" fill="#1d4e6e"/><path d="M22 46c5-7 12-10 19-9 6 1 10 4 14 9-4 5-8 8-14 9-7 1-14-2-19-9z" fill="#ffb03a"/><circle cx="48" cy="43" r="2" fill="#123"/><path d="M66 22l1 2.6 2.8.4-2 2 .5 2.8-2.3-1.3-2.3 1.3.5-2.8-2-2 2.8-.4z" fill="#fff"/>',
+        '<rect x="10" y="16" width="80" height="52" rx="4" fill="#ffe9a8"/><path d="M14 62a36 22 0 0 1 72 0z" fill="#ff8a5c"/><circle cx="50" cy="46" r="10" fill="#ffd93b"/>'
+      ];
+      $('[data-act="tv"]', s).addEventListener("click", () => {
+        tvIdx = (tvIdx + 1) % TV_SIMPLE.length;
+        tvPic.innerHTML = TV_SIMPLE[tvIdx];
+        sfx.pop();
+        roomPraise(ctx, "tv", 14, 60);
+      });
+      let day = true;
+      $('[data-act="window"]', s).addEventListener("click", () => {
+        day = !day;
+        $("#winPic", s).innerHTML = day
+          ? '<rect x="22" y="34" width="86" height="76" rx="8" fill="#aee7ff"/><circle cx="88" cy="50" r="9" fill="#ffd93b"/><circle cx="40" cy="88" r="6" fill="#fff" opacity=".85"/><circle cx="57" cy="95" r="4.6" fill="#fff" opacity=".85"/>'
+          : '<rect x="22" y="34" width="86" height="76" rx="8" fill="#2b3a67"/><path d="M86 42a10.5 10.5 0 1 0 7 18A12.5 12.5 0 0 1 86 42z" fill="#ffd93b"/><circle cx="38" cy="52" r="1.9" fill="#fff"/><circle cx="54" cy="90" r="1.9" fill="#fff"/><circle cx="33" cy="97" r="1.4" fill="#fff"/><circle cx="66" cy="46" r="1.4" fill="#fff"/>';
+        sfx.pop();
+        if (!day) roomPraise(ctx, "window", 84, 80);
+        else speak("طلع النهار تاني! صباح الخير", "n_dayback");
+      });
+      $('[data-act="lamp"]', s).addEventListener("click", () => {
+        const glow = $("[data-glow]", s);
+        const on = !glow.classList.contains("on");
+        glow.classList.toggle("on", on);
+        tone(on ? 880 : 440, 0, 0.12, "sine", 0.1);
+        if (on) roomPraise(ctx, "lamp", 88, 66);
+        else speak("طفّينا النور", "n_lampoff");
+      });
+      const detach = attachDrag(s, {
+        onPlace(el) {
+          el.classList.add("placed");
+          roomPraise(ctx, el.dataset.task, 50, 30);
+        }
+      });
+      cleanupCurrent = detach;
+    }
+
+    /* ---------- المطبخ ---------- */
+    const FOODS = [
+      { id: "apple", name: "تفاحة" }, { id: "bread", name: "عيش" },
+      { id: "carrot", name: "جزرة" }, { id: "milk", name: "لبن" }
+    ];
+    function buildKitchen(ctx) {
+      const s = ctx.scene;
+      const wants = {};
+      const shuffledFoods = shuffle(FOODS.map(f => f.id));
+      wants.omar = shuffledFoods[0]; wants.yassin = shuffledFoods[1];
+      s.innerHTML =
+        '<svg class="bg" viewBox="0 0 400 310" preserveAspectRatio="none" aria-hidden="true">' +
+        '<rect width="400" height="230" fill="#fdf0d5"/><rect y="230" width="400" height="80" fill="#d9a066"/>' +
+        '<rect x="0" y="222" width="400" height="14" fill="#b57e4f"/>' +
+        '<rect x="150" y="26" width="100" height="66" rx="8" fill="#fff" stroke="#e8dcc4" stroke-width="4"/><path d="M200 26v66M150 59h100" stroke="#e8dcc4" stroke-width="4"/>' +
+        '<rect x="16" y="30" width="62" height="128" rx="8" fill="#eef2f8"/><rect x="16" y="76" width="62" height="4" fill="#c3cede"/>' +
+        '<ellipse cx="128" cy="248" rx="46" ry="13" fill="#fff" stroke="#ddd3c0" stroke-width="3"/>' +
+        '<ellipse cx="272" cy="248" rx="46" ry="13" fill="#fff" stroke="#ddd3c0" stroke-width="3"/>' +
+        "</svg>" +
+        '<div class="fridge-door" data-fridge style="right:80.5%;bottom:48.5%;width:16%;height:41.5%;">' +
+          '<svg viewBox="0 0 62 128"><rect width="62" height="128" rx="8" fill="#dfe7f2"/><rect y="44" width="62" height="4" fill="#b9c6da"/><rect x="50" y="14" width="5" height="20" rx="2.5" fill="#93a5c0"/><rect x="50" y="56" width="5" height="26" rx="2.5" fill="#93a5c0"/></svg></div>' +
+        '<div class="actor" style="right:22%;bottom:26%;width:19%;">' + boySVG("omar") + "</div>" +
+        '<div class="actor" style="right:58%;bottom:26%;width:19%;">' + boySVG("yassin") + "</div>" +
+        '<div class="bubble" data-bubble="omar" style="right:20%;bottom:76%;width:15%;">' + ICONS[wants.omar] + "</div>" +
+        '<div class="bubble" data-bubble="yassin" style="right:56%;bottom:76%;width:15%;">' + ICONS[wants.yassin] + "</div>" +
+        '<div class="target-zone" data-plate="omar" style="right:20.5%;bottom:12%;width:24%;height:13%;"></div>' +
+        '<div class="target-zone" data-plate="yassin" style="right:55.5%;bottom:12%;width:24%;height:13%;"></div>' +
+        FOODS.map((f, i) =>
+          '<div class="drag" data-food="' + f.id + '" data-target="" style="right:' + (6 + i * 24) + '%;bottom:1.5%;width:14%;">' + ICONS[f.id] + "</div>").join("");
+      $$(".drag", s).forEach(el => {
+        el.dataset.homeR = el.style.right; el.dataset.homeB = el.style.bottom;
+        const updateTarget = () => {
+          const who = wants.omar === el.dataset.food ? "omar" : (wants.yassin === el.dataset.food ? "yassin" : null);
+          el.dataset.target = who ? '[data-plate="' + who + '"]' : "";
+        };
+        el._updateTarget = updateTarget; updateTarget();
+      });
+      const detach = attachDrag(s, {
+        onPick(el) { el._updateTarget && el._updateTarget(); },
+        onPlace(el, target) {
+          const who = target.dataset.plate;
+          el.classList.add("placed");
+          roomPraise(ctx, who, who === "omar" ? 30 : 66, 30);
+          const bub = $('[data-bubble="' + who + '"]', s);
+          bub.innerHTML = '<span style="font-size:1.7rem;">😋</span>';
+          setTimeout(() => {
+            el.classList.remove("placed");
+            el.classList.add("returning");
+            el.style.right = el.dataset.homeR; el.style.bottom = el.dataset.homeB;
+            setTimeout(() => el.classList.remove("returning"), 500);
+            const others = FOODS.map(f => f.id).filter(id => id !== wants[who === "omar" ? "yassin" : "omar"]);
+            wants[who] = pick(others);
+            bub.innerHTML = ICONS[wants[who]];
+            $$(".drag", s).forEach(d => d._updateTarget && d._updateTarget());
+            $("#roomNote").textContent = "";
+          }, 1400);
+        },
+        onMiss(el, home) {
+          const r = el.getBoundingClientRect(), sr = s.getBoundingClientRect();
+          const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+          let onPlate = false;
+          $$("[data-plate]", s).forEach(p => {
+            const pr = p.getBoundingClientRect();
+            if (cx >= pr.left - 20 && cx <= pr.right + 20 && cy >= pr.top - 20 && cy <= pr.bottom + 20) onPlate = true;
+          });
+          shakeBack(el, home);
+          if (onPlate) { const e2 = encourageLine(); $("#roomNote").textContent = e2.text; speak(e2.text, e2.clip); }
+        }
+      });
+      $('[data-fridge]', s).addEventListener("click", ev => {
+        const d = ev.currentTarget;
+        const open = !d.classList.contains("open");
+        d.classList.toggle("open", open);
+        sfx.pop();
+        if (open) roomPraise(ctx, "fridge", 86, 72);
+      });
+      cleanupCurrent = detach;
+    }
+
+    /* ---------- أوضة اللعب ---------- */
+    const SHAPES = [
+      { id: "circle", kind: "circle", color: "#ff5252", name: "دايرة حمرا" },
+      { id: "square", kind: "square", color: "#4a90e2", name: "مربع أزرق" },
+      { id: "tri", kind: "tri", color: "#ffc93c", name: "مثلث أصفر" },
+      { id: "star", kind: "star", color: "#a678e8", name: "نجمة بنفسجي" },
+      { id: "heart", kind: "heart", color: "#ff6b8a", name: "قلب بينك" }
+    ];
+    function buildPlay(ctx) {
+      const s = ctx.scene;
+      const boxes = shuffle(SHAPES);
+      s.innerHTML =
+        '<svg class="bg" viewBox="0 0 400 310" preserveAspectRatio="none" aria-hidden="true">' +
+        '<rect width="400" height="232" fill="#efe4fb"/><rect y="232" width="400" height="78" fill="#c9a6e8"/>' +
+        '<rect x="152" y="30" width="96" height="70" rx="6" fill="#fff" stroke="#b57e4f" stroke-width="5"/><circle cx="222" cy="46" r="8" fill="#ffc93c"/><path d="M158 94l24-28 16 16 14-12 30 24z" fill="#58c24a"/>' +
+        '<rect x="0" y="196" width="400" height="10" fill="#a678e8"/>' +
+        "</svg>" +
+        '<div class="actor" style="right:1.5%;bottom:34%;width:16%;">' + boySVG("omar") + "</div>" +
+        '<div class="actor" style="right:82.5%;bottom:34%;width:16%;">' + boySVG("yassin") + "</div>" +
+        boxes.map((sh, i) =>
+          '<div style="position:absolute;right:' + (2 + i * 19.6) + '%;bottom:4%;width:17.5%;height:27%;background:' + sh.color + '33;border-radius:18px;"></div>' +
+          '<div class="target-zone" data-box="' + sh.id + '" style="right:' + (2 + i * 19.6) + '%;bottom:4%;width:17.5%;height:27%;">' + shapeOutlineSVG(sh.kind, sh.color) + "</div>").join("") +
+        SHAPES.map((sh, i) =>
+          '<div class="drag" data-target="[data-box=\'' + sh.id + '\']" data-task="' + sh.id + '" style="right:' + (4.2 + i * 19.6) + '%;bottom:42%;width:13%;">' + shapeSVG(sh.kind, sh.color) + "</div>").join("");
+      const detach = attachDrag(s, {
+        onPlace(el) {
+          el.classList.add("placed");
+          el.style.width = "13%";
+          roomPraise(ctx, el.dataset.task, 50, 30);
+        }
+      });
+      cleanupCurrent = detach;
+    }
+</script>
+
+    <script>
+    "use strict";
+    /* ================= محطة الألغاز ================= */
+    const GAMES = {
+      count:   { name: "ألغاز العد", desc: "عدّ واجمع واطرح بالصور والأرقام", color: "#ffe3ec", levels: 10,
+                 icon: '<svg viewBox="0 0 48 48"><circle cx="15" cy="15" r="8" fill="#ff5252"/><circle cx="33" cy="15" r="8" fill="#ffc93c"/><circle cx="24" cy="33" r="8" fill="#4a90e2"/></svg>' },
+      memory:  { name: "لعبة الذاكرة", desc: "اقلب الكروت وطابق الصور زي بعض", color: "#e2f7f3", levels: 8,
+                 icon: '<svg viewBox="0 0 48 48"><rect x="5" y="8" width="17" height="22" rx="4" fill="#ffb03a"/><rect x="26" y="8" width="17" height="22" rx="4" fill="#ffb03a"/><path d="M24 33l2.4 5 5.5.7-4 3.8.9 5.5L24 45.4 19.2 48l.9-5.5-4-3.8 5.5-.7z" fill="#17b890"/></svg>' },
+      pattern: { name: "كمّل الشكل", desc: "بص على النمط وكمّل اللي ناقص", color: "#efe4fb", levels: 8,
+                 icon: '<svg viewBox="0 0 48 48"><circle cx="10" cy="24" r="6" fill="#ff5252"/><rect x="21" y="18" width="12" height="12" rx="3" fill="#4a90e2"/><path d="M40 17l6 11H34z" fill="#ffc93c"/></svg>' },
+      quran:   { name: "حفظ القرآن", desc: "اسمع الآية وقولها ورايا لحد ما تحفظها", color: "#e6f7e0", levels: 5,
+                 icon: '<svg viewBox="0 0 48 48"><path d="M10 8h24a4 4 0 0 1 4 4v28H14a4 4 0 0 1-4-4z" fill="#2e9e5b"/><path d="M10 8v28a4 4 0 0 0 4 4h24v-6H16a6 6 0 0 1-6-6z" fill="#1f7a44"/><path d="M24 15l1.8 3.9 4.2.5-3.1 2.9.8 4.2L24 24.4l-3.7 2.1.8-4.2-3.1-2.9 4.2-.5z" fill="#ffc93c"/></svg>' }
+    };
+    const LEVEL_TITLES = {
+      count: ["عدّ لحد ٥", "عدّ من ٤ لحد ١٠", "جمع بالصور لحد ٦", "جمع بالصور لحد ١٠", "جمع بالصور لحد ١٥", "طرح بالصور من ١٠", "جمع أرقام لحد ١٢", "طرح أرقام لحد ٢٠", "جمع أرقام لحد ٢٠", "جمع وطرح لحد ٢٠"],
+      memory: ["زوجين", "٣ أزواج", "٤ أزواج", "٥ أزواج", "٦ أزواج", "٨ أزواج", "١٠ أزواج", "١٢ زوج"],
+      pattern: ["نمط AB", "نمط AAB و ABB", "نمط ABC", "أنماط أطول", "أرقام بتزيد ١ أو ٢", "أرقام بتزيد ٢ أو ٣ أو ٥", "أرقام بتقل ١ أو ٢", "الرقم الناقص في النص"],
+      quran: ["الآية الأولى", "الآية التانية", "الآية التالتة", "الآية الرابعة", "الآية الخامسة"]
+    };
+    let currentGame = null, session = null;
+
+    function levelStars(game, lvl) { return save.levels[game][lvl] || 0; }
+    function isUnlocked(game, lvl) { return lvl === 1 || levelStars(game, lvl - 1) > 0; }
+    function starsRow(n) {
+      let h = "";
+      for (let i = 1; i <= 3; i++) h += '<span class="' + (i <= n ? "" : "off") + '">' + STAR_SVG + "</span>";
+      return h;
+    }
+    function renderGameList() {
+      $("#gameList").innerHTML = Object.keys(GAMES).map(g => {
+        const def = GAMES[g];
+        const total = Object.values(save.levels[g]).reduce((a, b) => a + b, 0);
+        return '<button class="game-row" data-game="' + g + '">' +
+          '<span class="gi" style="background:' + def.color + '">' + def.icon + "</span>" +
+          "<span><h3>" + def.name + "</h3><p>" + def.desc + "</p></span>" +
+          '<span class="gs">' + STAR_SVG + " " + toAr(total) + " / " + toAr(def.levels * 3) + "</span></button>";
+      }).join("");
+      $$("#gameList [data-game]").forEach(b => b.addEventListener("click", () => { sfx.tap(); openLevels(b.dataset.game); }));
+    }
+    $("#puzzlesBack").addEventListener("click", () => { sfx.tap(); showScreen("screen-home"); renderHome(); });
+    $("#levelsBack").addEventListener("click", () => { sfx.tap(); showScreen("screen-puzzles"); renderGameList(); });
+    $("#gameBack").addEventListener("click", () => { sfx.tap(); if (currentGame) { showScreen("screen-levels"); openLevels(currentGame); } else { showScreen("screen-puzzles"); renderGameList(); } });
+
+    function openLevels(game) {
+      currentGame = game;
+      showScreen("screen-levels");
+      $("#levelsTitle").textContent = GAMES[game].name;
+      $("#levelGrid").innerHTML = Array.from({ length: GAMES[game].levels }, (_, i) => i + 1).map(lvl => {
+        const un = isUnlocked(game, lvl), st = levelStars(game, lvl);
+        return '<button class="level-btn' + (un ? "" : " locked") + '" data-lvl="' + lvl + '" ' + (un ? "" : "disabled") + ">" +
+          (un ? '<span class="ln">' + toAr(lvl) + "</span>" : LOCK_SVG) +
+          '<span class="lt">' + LEVEL_TITLES[game][lvl - 1] + "</span>" +
+          '<span class="ls">' + starsRow(st) + "</span></button>";
+      }).join("");
+      $$("#levelGrid [data-lvl]").forEach(b => b.addEventListener("click", () => { sfx.tap(); startLevel(game, parseInt(b.dataset.lvl, 10)); }));
+    }
+
+    /* ---------- جلسة اللعب ---------- */
+    function startLevel(game, lvl) {
+      session = { game, lvl, q: 0, mistakes: 0, busy: false, twin: Math.random() < 0.5 ? "omar" : "yassin" };
+      showScreen("screen-game");
+      $("#gameTitle").textContent = GAMES[game].name + " · مستوى " + toAr(lvl);
+      $("#qNono").innerHTML = nonoSVG([]);
+      if (game === "memory") startMemory(lvl);
+      else if (game === "quran") startQuran(lvl);
+      else nextQuestion();
+    }
+    function setQChars() {
+      $("#qTwin").innerHTML = boySVG(session.twin);
+      session.twin = session.twin === "omar" ? "yassin" : "omar";
+    }
+    function setDots(total, idx) {
+      $("#gameDots").innerHTML = Array.from({ length: total }, (_, i) =>
+        '<span class="' + (i < idx ? "done" : i === idx ? "now" : "") + '"></span>').join("");
+    }
+    function setFeedback(text, cls) {
+      const f = $("#gameFeedback");
+      f.textContent = text; f.className = "feedback" + (cls ? " " + cls : "");
+    }
+    function starsForMistakes(m) { return m <= 2 ? 3 : m <= 4 ? 2 : 1; }
+    function finishLevel() {
+      const earned = starsForMistakes(session.mistakes);
+      const prev = levelStars(session.game, session.lvl);
+      if (earned > prev) {
+        save.levels[session.game][session.lvl] = earned;
+        addStars(earned - prev);
+      }
+      persist();
+      $("#winStars").innerHTML = starsRow(earned);
+      $("#winTitle").textContent = pick(PRAISE);
+      const hasNext = session.lvl < GAMES[session.game].levels && earned > 0;
+      $("#winText").textContent = "خلّصت المستوى " + toAr(session.lvl) + " وكسبت " + toAr(earned) + (earned === 1 ? " نجمة" : " نجوم") + "!";
+      $("#winNext").style.display = hasNext ? "" : "none";
+      $("#winOverlay").classList.add("show");
+      sfx.win(); confetti();
+      const starWord = earned === 1 ? "نجمة واحدة" : earned === 2 ? "نجمتين" : "تلات نجوم";
+      speak("برافو عليك! خلّصت المستوى وكسبت " + starWord, "n_win" + earned);
+      session.finished = true;
+    }
+    $("#winNext").addEventListener("click", () => {
+      $("#winOverlay").classList.remove("show"); sfx.tap();
+      if (session) startLevel(session.game, session.lvl + 1);
+    });
+    $("#winLevels").addEventListener("click", () => {
+      $("#winOverlay").classList.remove("show"); sfx.tap();
+      showScreen("screen-levels"); if (currentGame) openLevels(currentGame);
+    });
+
+    function nextQuestion() {
+      if (session.q >= 5) { finishLevel(); return; }
+      session.busy = false;
+      setQChars();
+      setDots(5, session.q);
+      setFeedback("", "");
+      const last = session.q === 4;
+      const gen = session.game === "count" ? genCountQ(session.lvl) : genPatternQ(session.lvl);
+      let clip = gen.clip || null;
+      if (!clip && session.game === "count" && session.lvl <= 2) clip = "n_q_count";
+      if (last) {
+        $("#gameQ").textContent = "دي آخر واحدة! " + gen.q;
+        if (save.sound && playClip("n_lastone")) {
+          const s = session;
+          setTimeout(() => { if (session === s && !s.finished) speak(gen.q, clip); }, 1150);
+        } else speak("دي آخر واحدة! " + gen.q);
+      } else {
+        $("#gameQ").textContent = gen.q;
+        speak(gen.q, clip);
+      }
+      renderChoices(gen);
+    }
+    function renderChoices(gen) {
+      const area = $("#playArea");
+      area.innerHTML = gen.visual + '<div class="options">' +
+        gen.choices.map((c, i) => '<button class="opt-btn" data-i="' + i + '">' + c.html + "</button>").join("") + "</div>";
+      $$(".opt-btn", area).forEach(b => b.addEventListener("click", () => {
+        if (session.busy) return;
+        const c = gen.choices[parseInt(b.dataset.i, 10)];
+        if (c.ok) {
+          session.busy = true;
+          b.classList.add("right");
+          sfx.good();
+          const p = praiseLine();
+          setFeedback(p.text, "good"); speak(p.text, p.clip);
+          ["#qTwin", "#qNono"].forEach(sel => {
+            const el = $(sel);
+            el.classList.remove("bounce"); void el.offsetWidth; el.classList.add("bounce");
+            setTimeout(() => el.classList.remove("bounce"), 650);
+          });
+          session.q++;
+          setTimeout(nextQuestion, 1150);
+        } else {
+          session.mistakes++;
+          b.classList.add("wrong"); b.disabled = true;
+          sfx.bad();
+          const e2 = encourageLine();
+          setFeedback(e2.text, "bad"); speak(e2.text, e2.clip);
+        }
+      }));
+    }
+    function makeChoices(answer, lo, hi) {
+      const set = new Set([answer]);
+      const cand = shuffle([answer + 1, answer - 1, answer + 2, answer - 2, answer + 3, answer - 3, answer + 10, answer - 10]);
+      for (const c of cand) { if (set.size >= 3) break; if (c >= lo && c <= hi && !set.has(c)) set.add(c); }
+      let f = lo;
+      while (set.size < 3) { if (!set.has(f)) set.add(f); f++; }
+      return shuffle(Array.from(set)).map(v => ({ v, ok: v === answer, html: toAr(v) }));
+    }
+    function iconsRow(icon, n, cls) {
+      let h = '<div class="' + (cls || "count-stage") + '">';
+      for (let i = 0; i < n; i++) h += '<span class="ci">' + ICONS[icon] + "</span>";
+      return h + "</div>";
+    }
+
+    /* ---------- أسئلة العد ---------- */
+    /* من غير قلوب في العدّ: القلب شبه أيقونة الحياة وبيتلخبط معاها */
+    const COUNT_ICONS = ["apple", "banana", "carrot", "star", "fish", "flower", "moon", "ball", "orange", "grape", "sun"];
+    function genCountQ(lvl) {
+      const icon = pick(COUNT_ICONS);
+      if (lvl === 1 || lvl === 2) {
+        const n = lvl === 1 ? rand(1, 5) : rand(4, 10);
+        return { q: "عدّ الصور دي: كام واحدة؟", visual: iconsRow(icon, n), choices: makeChoices(n, 1, 12) };
+      }
+      if (lvl >= 3 && lvl <= 5) {
+        const max = lvl === 3 ? 6 : lvl === 4 ? 10 : 15;
+        const a = rand(1, max - 1), b = rand(1, max - a);
+        const visual = '<div class="add-visual"><div class="add-group">' + Array.from({ length: a }, () => '<span class="ci">' + ICONS[icon] + "</span>").join("") + '</div>' +
+          '<span class="add-sign">+</span><div class="add-group">' + Array.from({ length: b }, () => '<span class="ci">' + ICONS[icon] + "</span>").join("") + "</div></div>";
+        return { q: "اجمع: " + toAr(a) + " + " + toAr(b) + " = كام؟", visual, choices: makeChoices(a + b, 1, 20) };
+      }
+      if (lvl === 6) {
+        const a = rand(4, 10), b = rand(1, a - 1);
+        let cells = "";
+        for (let i = 0; i < a; i++) cells += '<span class="ci' + (i >= a - b ? " crossed" : "") + '">' + ICONS[icon] + "</span>";
+        return { q: "كانوا " + toAr(a) + " وشيلنا منهم " + toAr(b) + "، فاضل كام؟", visual: '<div class="count-stage">' + cells + "</div>", choices: makeChoices(a - b, 0, 12) };
+      }
+      if (lvl === 7) {
+        const a = rand(2, 11), b = rand(1, 12 - a);
+        return { q: "اجمع الأرقام دي", visual: '<div class="big-nums">' + toAr(a) + ' <span class="op">+</span> ' + toAr(b) + " = ؟</div>", choices: makeChoices(a + b, 1, 15) };
+      }
+      if (lvl === 8) {
+        const a = rand(6, 20), b = rand(1, a - 1);
+        return { q: "اطرح الأرقام دي", visual: '<div class="big-nums">' + toAr(a) + ' <span class="op">−</span> ' + toAr(b) + " = ؟</div>", choices: makeChoices(a - b, 0, 24) };
+      }
+      if (lvl === 9) {
+        const a = rand(3, 17), b = rand(2, 20 - a);
+        return { q: "اجمع الأرقام دي", visual: '<div class="big-nums">' + toAr(a) + ' <span class="op">+</span> ' + toAr(b) + " = ؟</div>", choices: makeChoices(a + b, 1, 24) };
+      }
+      /* مستوى ١٠: جمع وطرح أرقام لحد ٢٠ */
+      if (Math.random() < 0.5) {
+        const a = rand(3, 17), b = rand(2, 20 - a);
+        return { q: "اجمع الأرقام دي", visual: '<div class="big-nums">' + toAr(a) + ' <span class="op">+</span> ' + toAr(b) + " = ؟</div>", choices: makeChoices(a + b, 1, 24) };
+      }
+      const a = rand(8, 20), b = rand(2, a - 1);
+      return { q: "اطرح الأرقام دي", visual: '<div class="big-nums">' + toAr(a) + ' <span class="op">−</span> ' + toAr(b) + " = ؟</div>", choices: makeChoices(a - b, 0, 24) };
+    }
+
+    /* ---------- أسئلة كمّل الشكل ---------- */
+    function seqTiles(items, isNum) {
+      return '<div class="seq-row">' + items.map(it =>
+        it === null ? '<span class="tile-s qmark">؟</span>' :
+        '<span class="tile-s">' + (isNum ? toAr(it) : ICONS[it]) + "</span>").join("") + "</div>";
+    }
+    function iconChoices(answer, pool) {
+      const others = shuffle(pool.filter(p => p !== answer)).slice(0, 2);
+      return shuffle([answer].concat(others)).map(v => ({ v, ok: v === answer, html: ICONS[v] }));
+    }
+    function genPatternQ(lvl) {
+      const pool = ["apple", "banana", "star", "heart", "flower", "ball", "moon", "fish", "orange", "sun"];
+      if (lvl <= 4) {
+        const abc = shuffle(pool).slice(0, 3);
+        let seq, answer;
+        if (lvl === 1) { seq = [abc[0], abc[1], abc[0], abc[1], abc[0]]; answer = abc[1]; }
+        else if (lvl === 2) {
+          if (Math.random() < 0.5) { seq = [abc[0], abc[0], abc[1], abc[0], abc[0]]; answer = abc[1]; }
+          else { seq = [abc[0], abc[1], abc[1], abc[0], abc[1]]; answer = abc[1]; }
+        } else if (lvl === 3) { seq = [abc[0], abc[1], abc[2], abc[0], abc[1]]; answer = abc[2]; }
+        else {
+          const kind = rand(1, 3);
+          if (kind === 1) { seq = [abc[0], abc[1], abc[0], abc[1], abc[0], abc[1], abc[0]]; answer = abc[1]; }
+          else if (kind === 2) { seq = [abc[0], abc[0], abc[1], abc[1], abc[0], abc[0], abc[1]]; answer = abc[1]; }
+          else { seq = [abc[0], abc[1], abc[2], abc[0], abc[1], abc[2], abc[0]]; answer = abc[1]; }
+        }
+        return { q: "بص على النمط وكمّل: إيه اللي ناقص؟", clip: "n_q_pattern", visual: seqTiles(seq.concat([null]), false), choices: iconChoices(answer, pool) };
+      }
+      if (lvl === 7) {
+        const step = pick([1, 2]);
+        const start = rand(11, 20);
+        const terms = [0, 1, 2, 3].map(i => start - i * step);
+        const answer = start - 4 * step;
+        return { q: "كمّل الأرقام: كل مرة العدد بيقل " + toAr(step), visual: seqTiles(terms.concat([null]), true), choices: makeChoices(answer, 1, 25) };
+      }
+      if (lvl === 8) {
+        const step = pick([2, 3, 5]);
+        let start = rand(1, 5);
+        if (start + 4 * step > 25) start = Math.max(1, 25 - 4 * step - rand(0, 2));
+        const items = [start, start + step, null, start + 3 * step, start + 4 * step];
+        const answer = start + 2 * step;
+        return { q: "بص كويس: إيه الرقم اللي ناقص في النص؟", clip: "n_q_missing", visual: seqTiles(items, true), choices: makeChoices(answer, 1, 30) };
+      }
+      const step = lvl === 5 ? pick([1, 2]) : pick([2, 3, 5]);
+      let start = lvl === 5 ? rand(1, 12) : rand(1, 5);
+      if (start + 4 * step > 25) start = Math.max(1, 25 - 4 * step - rand(0, 2));
+      const terms = [0, 1, 2, 3].map(i => start + i * step);
+      const answer = start + 4 * step;
+      return { q: "كمّل الأرقام: كل مرة العدد بيزيد " + toAr(step), visual: seqTiles(terms.concat([null]), true), choices: makeChoices(answer, 1, 30) };
+    }
+
+    /* ---------- لعبة الذاكرة ---------- */
+    const MEM_PAIRS = [2, 3, 4, 5, 6, 8, 10, 12];
+    const MEM_ICONS = ["apple", "star", "heart", "fish", "flower", "moon", "ball", "sun", "banana", "carrot", "orange", "grape"];
+    function startMemory(lvl) {
+      const pairs = MEM_PAIRS[lvl - 1];
+      session.mem = { pairs, found: 0, open: [], lock: false, preview: lvl <= 3 };
+      setQChars();
+      setDots(pairs, 0);
+      const deck = shuffle(shuffle(MEM_ICONS).slice(0, pairs).flatMap(ic => [ic, ic]));
+      const cols = pairs <= 2 ? 2 : pairs === 3 ? 3 : 4;
+      const size = pairs >= 10 ? 62 : pairs >= 8 ? 74 : pairs >= 5 ? 84 : 96;
+      $("#gameQ").textContent = lvl <= 3 ? "بص على الكروت كويس واحفظ أماكنها، هتتقلب بعد ثانيتين!" : "دوس على الكروت وطابِق كل صورتين زي بعض";
+      speak($("#gameQ").textContent, lvl <= 3 ? "n_mem_preview" : "n_mem_plain");
+      setFeedback("", "");
+      const area = $("#playArea");
+      area.innerHTML = '<div class="memory-grid" style="grid-template-columns:repeat(' + cols + ',' + size + 'px);max-width:100%;">' +
+        deck.map((ic, i) => '<button class="mem-card' + (session.mem.preview ? " flipped" : "") + '" data-i="' + i + '" data-icon="' + ic + '">' +
+          '<span class="face front">؟</span><span class="face back">' + ICONS[ic] + "</span></button>").join("") + "</div>";
+      const cards = $$(".mem-card", area);
+      if (session.mem.preview) {
+        session.mem.lock = true;
+        setTimeout(() => {
+          if (!$("#screen-game").classList.contains("active")) return;
+          cards.forEach(c => { if (!c.classList.contains("matched")) c.classList.remove("flipped"); });
+          session.mem.lock = false;
+          $("#gameQ").textContent = "يلا! فاكر أماكن الصور؟ طابِق كل اتنين زي بعض";
+          speak("يلا! فاكر أماكن الصور؟ طابِق كل اتنين زي بعض", "n_mem_go");
+        }, 2000);
+      }
+      cards.forEach(card => card.addEventListener("click", () => {
+        const m = session.mem;
+        if (m.lock || card.classList.contains("flipped") || card.classList.contains("matched")) return;
+        card.classList.add("flipped"); sfx.pop();
+        m.open.push(card);
+        if (m.open.length < 2) return;
+        const [c1, c2] = m.open; m.open = [];
+        if (c1.dataset.icon === c2.dataset.icon) {
+          c1.classList.add("matched"); c2.classList.add("matched");
+          m.found++;
+          setDots(m.pairs, m.found);
+          sfx.good();
+          const p = praiseLine(); setFeedback(p.text, "good"); speak(p.text, p.clip);
+          if (m.found >= m.pairs) setTimeout(finishLevel, 800);
+        } else {
+          m.lock = true; session.mistakes++;
+          const e2 = encourageLine(); setFeedback(e2.text, "bad"); speak(e2.text, e2.clip);
+          setTimeout(() => { c1.classList.remove("flipped"); c2.classList.remove("flipped"); m.lock = false; }, 950);
+        }
+      }));
+    }
+
+    /* ---------- حفظ القرآن: آية بالتكرار (سورة الفيل، تلاوة العفاسي) ---------- */
+    const QURAN_AYAHS = [
+      "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ",
+      "أَلَمْ يَجْعَلْ كَيْدَهُمْ فِي تَضْلِيلٍ",
+      "وَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ",
+      "تَرْمِيهِم بِحِجَارَةٍ مِّن سِجِّيلٍ",
+      "فَجَعَلَهُمْ كَعَصْفٍ مَّأْكُولٍ"
+    ];
+    const reciteAudio = new Audio();
+    reciteAudio.preload = "auto";
+    function stopRecite() { try { reciteAudio.pause(); reciteAudio.onended = null; } catch (e) {} }
+    function playRecite(lvl, onend) {
+      stopSpeak();
+      try {
+        reciteAudio.src = "assets/quran/10500" + lvl + ".mp3";
+        reciteAudio.currentTime = 0;
+        reciteAudio.onended = onend || null;
+        const p = reciteAudio.play();
+        if (p && p.catch) p.catch(() => { if (onend) onend(); });
+      } catch (e) { if (onend) onend(); }
+    }
+    function startQuran(lvl) {
+      session.quran = { listens: 0, helps: 0, phase: "listen" };
+      setQChars();
+      setDots(3, 0);
+      setFeedback("", "");
+      $("#gameQ").textContent = "سورة الفيل · الآية " + toAr(lvl) + " من " + toAr(5);
+      speak("يلا نحفظ آية من سورة الفيل! اسمعها كويس وقولها ورايا", "n_quran_intro");
+      renderQuranStage(lvl);
+    }
+    function renderQuranStage(lvl) {
+      if (!session || session.game !== "quran" || !session.quran) return;
+      const q = session.quran;
+      const area = $("#playArea");
+      const ayah = QURAN_AYAHS[lvl - 1];
+      if (q.phase === "listen") {
+        area.innerHTML =
+          '<div class="ayah-card"><p class="ayah-text">' + ayah + '</p></div>' +
+          '<p class="listen-count">سمعتها ' + toAr(q.listens) + ' من ' + toAr(3) + ' مرات</p>' +
+          '<div class="quran-actions">' +
+          '<button class="btn btn-primary" id="qListen">اسمع الآية</button>' +
+          (q.listens >= 1 ? '<button class="btn btn-ghost" id="qSkip">سمعتها خلاص، يلا أقولها</button>' : "") +
+          "</div>";
+        $("#qListen").addEventListener("click", () => {
+          if (!save.sound) { setFeedback("شغّل الصوت من الزرار اللي فوق عشان تسمع الآية", "bad"); return; }
+          const btn = $("#qListen");
+          btn.disabled = true; btn.textContent = "الآية شغالة…";
+          playRecite(lvl, () => {
+            if (!session || session.game !== "quran" || !session.quran) return;
+            q.listens++;
+            if (q.listens >= 3) {
+              q.phase = "repeat"; setDots(3, 1);
+              speak("دلوقتي دورك! قول الآية ورايا بصوت عالي", "n_quran_repeat");
+            }
+            renderQuranStage(lvl);
+          });
+        });
+        const sk = $("#qSkip");
+        if (sk) sk.addEventListener("click", () => {
+          q.phase = "repeat"; setDots(3, 1); sfx.tap();
+          speak("دلوقتي دورك! قول الآية ورايا بصوت عالي", "n_quran_repeat");
+          renderQuranStage(lvl);
+        });
+      } else if (q.phase === "repeat") {
+        area.innerHTML =
+          '<div class="ayah-card"><p class="ayah-text">' + ayah + '</p></div>' +
+          '<p class="listen-count">قول الآية بصوت عالي زي ما سمعتها بالظبط</p>' +
+          '<div class="quran-actions">' +
+          '<button class="btn btn-primary" id="qSaid">قلتها صح</button>' +
+          '<button class="btn btn-ghost" id="qAgain">اسمعها تاني</button>' +
+          "</div>";
+        $("#qSaid").addEventListener("click", () => {
+          q.phase = "hide"; setDots(3, 2); sfx.good();
+          speak("دلوقتي جرّب تقولها من غير ما تبص!", "n_quran_hide");
+          renderQuranStage(lvl);
+        });
+        $("#qAgain").addEventListener("click", () => {
+          if (!save.sound) { setFeedback("شغّل الصوت من الزرار اللي فوق عشان تسمع الآية", "bad"); return; }
+          q.helps++;
+          playRecite(lvl, null);
+        });
+      } else {
+        area.innerHTML =
+          '<div class="ayah-card"><p class="ayah-text blurred" id="ayahHidden">' + ayah + '</p></div>' +
+          '<p class="listen-count">الآية مستخبية! قولها من حفظك بصوت عالي</p>' +
+          '<div class="quran-actions">' +
+          '<button class="btn btn-primary" id="qDone">حفظتها! قلتها صح</button>' +
+          '<button class="btn btn-ghost" id="qPeek">أبص بسرعة</button>' +
+          "</div>";
+        $("#qPeek").addEventListener("click", () => {
+          q.helps++;
+          const t = $("#ayahHidden");
+          if (!t) return;
+          t.classList.remove("blurred");
+          setTimeout(() => { const t2 = $("#ayahHidden"); if (t2) t2.classList.add("blurred"); }, 1600);
+        });
+        $("#qDone").addEventListener("click", () => {
+          session.mistakes = q.helps <= 1 ? 0 : q.helps <= 3 ? 3 : 6;
+          setDots(3, 3);
+          finishLevel();
+        });
+      }
+    }
+
+    /* ================= دكان نونو ================= */
+    const SHOP_CLOTHES = [
+      { id: "glasses", name: "نضارة", price: 2 }, { id: "bow", name: "فيونكة", price: 3 },
+      { id: "hat", name: "طاقية", price: 4 }, { id: "cap", name: "كاب", price: 6 },
+      { id: "crown", name: "تاج", price: 8 },
+      { id: "herocrown", name: "تاج الأبطال", price: 0, special: true }
+    ];
+    const SHOP_ROOM = [
+      { id: "ball", name: "كورة", price: 2 }, { id: "plant", name: "زرعة", price: 3 },
+      { id: "picture", name: "صورة", price: 3 }, { id: "balloons", name: "بلالين", price: 4 },
+      { id: "lamp", name: "أباجورة", price: 5 }, { id: "tank", name: "حوض سمك", price: 6 },
+      { id: "rug", name: "سجادة", price: 6 }
+    ];
+    const ROOM_POS = {
+      rug: "right:33%;bottom:2%;width:34%;height:20%;z-index:1;",
+      plant: "right:3%;bottom:8%;width:15%;height:26%;",
+      picture: "right:6%;bottom:58%;width:17%;height:24%;",
+      balloons: "right:84%;bottom:52%;width:13%;height:30%;",
+      lamp: "right:86%;bottom:8%;width:11%;height:30%;",
+      tank: "right:66%;bottom:56%;width:24%;height:26%;",
+      ball: "right:76%;bottom:4%;width:13%;height:20%;"
+    };
+    function openShop() {
+      showScreen("screen-shop");
+      renderShop();
+      speak("أهلاً بيك في دكان نونو! اختار حاجة حلوة على قد نجومك", "n_shop");
+    }
+    $("#shopBack").addEventListener("click", () => { sfx.tap(); showScreen("screen-home"); renderHome(); });
+    $("#shopSayBar").addEventListener("click", () => { sfx.tap(); speak($("#shopSayText").textContent); });
+    function renderShop() {
+      const room = $("#nonoRoom");
+      room.innerHTML =
+        '<svg class="bg" viewBox="0 0 400 290" preserveAspectRatio="none" aria-hidden="true">' +
+        '<rect width="400" height="212" fill="#cdeffd"/><rect y="212" width="400" height="78" fill="#f2c894"/>' +
+        '<rect x="158" y="34" width="84" height="66" rx="8" fill="#aee7ff" stroke="#fff" stroke-width="6"/><path d="M200 34v66M158 67h84" stroke="#fff" stroke-width="5"/><circle cx="224" cy="50" r="8" fill="#ffd93b"/>' +
+        "</svg>" +
+        save.shop.placed.map(id => '<div class="room-item" style="' + ROOM_POS[id] + '">' + ICONS[id] + "</div>").join("") +
+        '<div class="nono-stage">' + nonoSVG(save.shop.worn) + "</div>";
+      const mk = (item, kind) => {
+        const owned = save.shop.owned.indexOf(item.id) >= 0;
+        const active = kind === "clothes" ? save.shop.worn.indexOf(item.id) >= 0 : save.shop.placed.indexOf(item.id) >= 0;
+        const locked = item.special && save.streak.count < 7;
+        let btn;
+        if (!owned && locked) btn = '<button class="sb" disabled>بعد ٧ أيام مواظبة</button>';
+        else if (!owned) btn = '<button class="sb" data-buy="' + item.id + '" data-kind="' + kind + '"' + (save.stars < item.price ? " disabled" : "") + ">" + (item.special ? "خدها هدية" : "اشتري") + "</button>";
+        else if (active) btn = '<button class="sb remove" data-toggle="' + item.id + '" data-kind="' + kind + '">شيل</button>';
+        else btn = '<button class="sb" data-toggle="' + item.id + '" data-kind="' + kind + '">' + (kind === "clothes" ? "لبّس نونو" : "حطها في الأوضة") + "</button>";
+        return '<div class="shop-item"><span class="si">' + ICONS[item.id] + "</span>" +
+          '<span class="sn">' + item.name + "</span>" +
+          (owned ? '<span class="sp">عندك ✓</span>' : item.special ? '<span class="sp">هدية المواظبة</span>' : '<span class="sp">' + STAR_SVG + " " + toAr(item.price) + "</span>") + btn + "</div>";
+      };
+      $("#shopClothes").innerHTML = SHOP_CLOTHES.map(i => mk(i, "clothes")).join("");
+      $("#shopRoomItems").innerHTML = SHOP_ROOM.map(i => mk(i, "room")).join("");
+      $$("#screen-shop [data-buy]").forEach(b => b.addEventListener("click", () => {
+        const all = SHOP_CLOTHES.concat(SHOP_ROOM);
+        const item = all.find(i => i.id === b.dataset.buy);
+        if (!item || save.stars < item.price) return;
+        save.stars -= item.price;
+        save.shop.owned.push(item.id);
+        if (b.dataset.kind === "clothes") wearItem(item.id); else save.shop.placed.push(item.id);
+        persist(); renderStars(); renderShop();
+        sfx.good(); confetti();
+        const msg = "مبروك! اشتريت " + item.name + " وبقت بتاعة نونو خلاص";
+        $("#shopSayText").textContent = msg; speak(msg);
+      }));
+      $$("#screen-shop [data-toggle]").forEach(b => b.addEventListener("click", () => {
+        const id = b.dataset.toggle, kind = b.dataset.kind;
+        if (kind === "clothes") {
+          if (save.shop.worn.indexOf(id) >= 0) save.shop.worn = save.shop.worn.filter(x => x !== id);
+          else wearItem(id);
+        } else {
+          if (save.shop.placed.indexOf(id) >= 0) save.shop.placed = save.shop.placed.filter(x => x !== id);
+          else save.shop.placed.push(id);
+        }
+        persist(); renderShop(); sfx.pop();
+      }));
+    }
+    function wearItem(id) {
+      const topSlot = ["hat", "cap", "crown", "herocrown"];
+      if (topSlot.indexOf(id) >= 0) save.shop.worn = save.shop.worn.filter(x => topSlot.indexOf(x) < 0);
+      if (save.shop.worn.indexOf(id) < 0) save.shop.worn.push(id);
+    }
+
+    /* ================= البداية ================= */
+    syncSoundIcon();
+    renderHome();
+    persist();
+    setTimeout(() => { speak("أهلاً بيك في بيت عمر وياسين ومعاهم نونو! دوس عليهم وهيسلّموا عليك", "n_welcome"); welcomePending = true; }, 600);
+</script>
+  </body>
+</html>

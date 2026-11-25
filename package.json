@@ -1,0 +1,1 @@
+{"dependencies":{"@capacitor/android":"^8.6.2","@capacitor/cli":"^8.6.2","@capacitor/core":"^8.6.2"},"description":"بيت عمر وياسين ومعاهم نونو — لعبة أطفال تعليمية بالعربية (٦ سنين ونص، أولى ابتدائي)","name":"bayt-omar-yassin","private":true,"scripts":{"sync":"npm run sync:www && npx cap sync android","sync:www":"node scripts/sync-www.js"},"version":"1.0.0"}
