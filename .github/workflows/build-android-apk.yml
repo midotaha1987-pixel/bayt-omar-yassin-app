@@ -1,7 +1,7 @@
 # بناء نسخة APK (debug) للعبة «بيت عمر وياسين ومعاهم نونو» — يعمل على GitHub
-# الناتج: ملف bayt-omar-yassin-v1.0.0.apk جاهز للتثبيت على أندرويد مباشرة،
-# ويُرفع كأصل (asset) في الإصدار apk-v1.0.0 — رابطه ثابت:
-# https://github.com/midotaha1987-pixel/bayt-omar-yassin-app/releases/download/apk-v1.0.0/bayt-omar-yassin-v1.0.0.apk
+# الناتج: ملف bayt-omar-yassin-v1.0.1.apk جاهز للتثبيت على أندرويد مباشرة،
+# ويُرفع كأصل (asset) في الإصدار apk-v1.0.1 — رابطه ثابت:
+# https://github.com/midotaha1987-pixel/bayt-omar-yassin-app/releases/download/apk-v1.0.1/bayt-omar-yassin-v1.0.1.apk
 #
 # ⚠️ قاعدة ذهبية — لا تحذف الإصدار أبداً: الإصدارات على مستودعات روني
 # immutable منذ نشرها (حذف إصدار يحرق الوسم نهائياً — GitHub يرفض إعادة
@@ -16,7 +16,7 @@
 # (signingConfigs.debug في android/app/build.gradle) — لا تغيّر المفتاح
 # أبداً وإلا عاد نفس العطل. من يحدّث من نسخة قديمة بمفتاح آخر يجب أن
 # يلغي تثبيت التطبيق أولاً (مرة واحدة) ثم يثبّت النسخة الجديدة.
-# ⚠️ الوسم apk-v1.0.0 يُنشأ بالدفع المباشر من SSH قبل أول بناء (الـ workflow
+# ⚠️ الوسم apk-v1.0.1 يُنشأ بالدفع المباشر من SSH قبل أول بناء (الـ workflow
 # لا ينشئ الوسوم) — ثم ينشئ الـ workflow الإصدار (مسودة) على نفس الوسم.
 #
 # متى يعمل:
@@ -54,7 +54,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          # Publish step needs the apk-v1.0.0 tag visible locally
+          # Publish step needs the apk-v1.0.1 tag visible locally
           # (default shallow checkout fetches no tags).
           fetch-tags: true
 
@@ -107,22 +107,22 @@ jobs:
           if-no-files-found: warn
 
       - name: Rename APK
-        run: cp android/app/build/outputs/apk/debug/app-debug.apk bayt-omar-yassin-v1.0.0.apk
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk bayt-omar-yassin-v1.0.1.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v5
         with:
           name: bayt-omar-yassin-apk
-          path: bayt-omar-yassin-v1.0.0.apk
+          path: bayt-omar-yassin-v1.0.1.apk
           if-no-files-found: error
 
       # Stable download URL:
-      # .../releases/download/apk-v1.0.0/bayt-omar-yassin-v1.0.0.apk
-      # (the tag apk-v1.0.0 is created by direct SSH push; the workflow
+      # .../releases/download/apk-v1.0.1/bayt-omar-yassin-v1.0.1.apk
+      # (the tag apk-v1.0.1 is created by direct SSH push; the workflow
       # never deletes the release — see the header note about immutable tags)
       # NOTE: publish goes through the REST API with curl, whose raw response
       # shows the cause if it fails.
-      - name: Publish to release apk-v1.0.0
+      - name: Publish to release apk-v1.0.1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -131,9 +131,9 @@ jobs:
           python3 - <<'PYEOF' > /tmp/release_payload.json
           import json
           print(json.dumps({
-            "tag_name": "apk-v1.0.0",
+            "tag_name": "apk-v1.0.1",
             "target_commitish": "main",
-            "name": "Android v1.0.0 (APK)",
+            "name": "Android v1.0.1 (APK)",
             "body": "نسخة أندرويد (debug) من لعبة «بيت عمر وياسين ومعاهم نونو» — تثبيت مباشر من خارج المتجر. اللعبة كاملة تعمل بدون إنترنت، بدون إعلانات وبدون تسجيل دخول.",
             "draft": True,
             "prerelease": False,
@@ -149,7 +149,7 @@ jobs:
           UPLOAD_URL=$(python3 -c "import json; print(json.load(open('/tmp/create.json')).get('upload_url','').split('{')[0])" 2>/dev/null)
           if [ -z "$REL_ID" ]; then
             echo "create returned no id (release may already exist published) — falling back to GET by tag"
-            REL_JSON=$(curl -s -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/tags/apk-v1.0.0")
+            REL_JSON=$(curl -s -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/tags/apk-v1.0.1")
             REL_ID=$(echo "$REL_JSON" | python3 -c "import json,sys; print(json.load(sys.stdin).get('id') or '')" 2>/dev/null)
             UPLOAD_URL=$(echo "$REL_JSON" | python3 -c "import json,sys; print(json.load(sys.stdin).get('upload_url','').split('{')[0])" 2>/dev/null)
           fi
@@ -158,12 +158,12 @@ jobs:
           # 2) Upload the APK (retry; delete a stale same-name asset first).
           for i in 1 2 3; do
             REL_JSON=$(curl -s -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/$REL_ID")
-            ASSET_ID=$(echo "$REL_JSON" | python3 -c "import json,sys; d=json.load(sys.stdin); print(next((str(a['id']) for a in d.get('assets',[]) if a['name']=='bayt-omar-yassin-v1.0.0.apk'), ''))" 2>/dev/null)
+            ASSET_ID=$(echo "$REL_JSON" | python3 -c "import json,sys; d=json.load(sys.stdin); print(next((str(a['id']) for a in d.get('assets',[]) if a['name']=='bayt-omar-yassin-v1.0.1.apk'), ''))" 2>/dev/null)
             if [ -n "$ASSET_ID" ]; then
               echo "deleting stale asset $ASSET_ID first"
               curl -s -o /dev/null -w "DELETE_ASSET_HTTP:%{http_code}\n" -X DELETE -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/assets/$ASSET_ID"
             fi
-            UPLOAD_HTTP=$(curl -s -o /tmp/upload.json -w "%{http_code}" -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Content-Type: application/vnd.android.package-archive" --data-binary @bayt-omar-yassin-v1.0.0.apk "$UPLOAD_URL?name=bayt-omar-yassin-v1.0.0.apk")
+            UPLOAD_HTTP=$(curl -s -o /tmp/upload.json -w "%{http_code}" -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Content-Type: application/vnd.android.package-archive" --data-binary @bayt-omar-yassin-v1.0.1.apk "$UPLOAD_URL?name=bayt-omar-yassin-v1.0.1.apk")
             echo "UPLOAD_HTTP:$UPLOAD_HTTP (attempt $i)"
             tail -c 300 /tmp/upload.json; echo
             echo "$UPLOAD_HTTP" | grep -q "^2" && break
@@ -176,7 +176,7 @@ jobs:
           echo "PATCH_HTTP:$PATCH_HTTP"
           tail -c 400 /tmp/patch.json; echo
           # 4) Final check: the (now published) release must exist AND carry the APK asset.
-          curl -s -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/tags/apk-v1.0.0" | python3 -c "import json,sys; d=json.load(sys.stdin); a=d.get('assets',[]); print('ASSETS:', [(x['name'], x['size']) for x in a]); sys.exit(0 if any(x['name']=='bayt-omar-yassin-v1.0.0.apk' for x in a) else 1)"
+          curl -s -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/midotaha1987-pixel/bayt-omar-yassin-app/releases/tags/apk-v1.0.1" | python3 -c "import json,sys; d=json.load(sys.stdin); a=d.get('assets',[]); print('ASSETS:', [(x['name'], x['size']) for x in a]); sys.exit(0 if any(x['name']=='bayt-omar-yassin-v1.0.1.apk' for x in a) else 1)"
           } 2>&1 | tee "$GITHUB_WORKSPACE/publish.log"
           test "${PIPESTATUS[0]}" -eq 0
 

@@ -13,9 +13,9 @@
 ## نسخة الأندرويد (APK)
 
 التثبيت المباشر (debug):
-https://github.com/midotaha1987-pixel/bayt-omar-yassin-app/releases/download/apk-v1.0.0/bayt-omar-yassin-v1.0.0.apk
+https://github.com/midotaha1987-pixel/bayt-omar-yassin-app/releases/download/apk-v1.0.1/bayt-omar-yassin-v1.0.1.apk
 
-- الحزمة: `com.bayt.omar.yassin` — الإصدار 1.0.0 (versionCode 1)
+- الحزمة: `com.bayt.omar.yassin` — الإصدار 1.0.1 (versionCode 2)
 - البناء: GitHub Actions (`.github/workflows/build-android-apk.yml`) — Node 22 + JDK 21
 - التوقيع: debug keystore ثابت ملتزم في `android/app/bayt-omar-yassin-debug.keystore`
   (كلمة المرور التقليدية `android`) — لا تغيّره أبداً، وإلا رفض أندرويد تثبيت

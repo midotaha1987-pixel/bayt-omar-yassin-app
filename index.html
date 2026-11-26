@@ -387,6 +387,65 @@
       .ayah-text.blurred{ filter:blur(8px); }
       .listen-count{ font-weight:800; color:var(--ink-soft); font-size:1.1rem; }
       .quran-actions{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+
+      /* ===== إثارة: كومبو ومؤثرات ===== */
+      .combo-badge{
+        min-height:2.2rem; font-size:1.35rem; font-weight:800; color:#ff6b1a;
+        display:flex; align-items:center; justify-content:center; gap:6px;
+      }
+      .combo-badge.pop{ animation:combo-pop .5s ease; }
+      @keyframes combo-pop{ 0%{ transform:scale(.4);} 60%{ transform:scale(1.35);} 100%{ transform:scale(1);} }
+      .game-stage.shaking{ animation:stage-shake .4s ease; }
+      @keyframes stage-shake{ 0%,100%{ transform:translateX(0);} 20%{ transform:translateX(-9px);} 45%{ transform:translateX(8px);} 70%{ transform:translateX(-5px);} 90%{ transform:translateX(3px);} }
+      .burst-star{ position:absolute; z-index:30; pointer-events:none; animation:burst .8s ease-out forwards; }
+      .burst-star svg{ width:22px; height:22px; }
+      @keyframes burst{ 0%{ opacity:1; transform:translate(0,0) scale(.5);} 100%{ opacity:0; transform:translate(var(--bx),var(--by)) scale(1.3);} }
+      .pill.pulsing{ animation:pill-pulse .5s ease; }
+      @keyframes pill-pulse{ 0%{ transform:scale(1);} 45%{ transform:scale(1.28);} 100%{ transform:scale(1);} }
+      .scene.hinting .drag:not(.placed){ animation:hint-pulse 1s ease-in-out infinite; }
+      .scene.hinting .hotspot{ animation:hint-pulse 1s ease-in-out infinite; }
+      @keyframes hint-pulse{ 0%,100%{ filter:drop-shadow(0 0 0 rgba(255,201,60,0));} 50%{ filter:drop-shadow(0 0 12px rgba(255,201,60,.95));} }
+
+      /* ===== تحدي السرعة ===== */
+      .speed-row{ background:linear-gradient(120deg,#ff6b1a,#e2543e) !important; color:#fff; position:relative; overflow:hidden; }
+      .speed-row h3,.speed-row p{ color:#fff !important; }
+      .speed-row .gs{ background:rgba(255,255,255,.25); border-radius:999px; padding:4px 12px; }
+      .speed-row .gi{ background:rgba(255,255,255,.25) !important; }
+      .speed-row::after{ content:"🔥"; position:absolute; left:10px; top:8px; font-size:1.3rem; animation:combo-pop 1.4s ease-in-out infinite; }
+      .timer-wrap{ height:22px; background:var(--paper); border:3px solid var(--line); border-radius:999px; overflow:hidden; margin:4px 0 8px; }
+      @media (prefers-color-scheme: dark){ .timer-wrap{ background:var(--paper2); } }
+      .timer-fill{ height:100%; width:100%; background:linear-gradient(90deg,#17b890,#ffc93c,#e2543e); transition:width .25s linear; }
+      .timer-fill.danger{ animation:hint-pulse .5s ease-in-out infinite; }
+      .speed-score{ font-size:1.5rem; font-weight:800; color:var(--coral); }
+
+      /* ===== صندوق المفاجآت ===== */
+      .mystery-row{ display:flex; gap:14px; justify-content:center; margin:8px 0 14px; }
+      .mystery-box{ font-size:2.6rem; background:var(--paper); border:4px solid var(--line); border-radius:20px; width:86px; height:86px; display:grid; place-items:center; box-shadow:0 5px 0 rgba(60,58,77,.15); }
+      @media (prefers-color-scheme: dark){ .mystery-box{ background:var(--paper2); } }
+      .mystery-box:active{ transform:scale(.94); }
+      .mystery-box.wiggling{ animation:box-wiggle 1s ease-in-out infinite; }
+      @keyframes box-wiggle{ 0%,100%{ transform:rotate(0);} 25%{ transform:rotate(-7deg);} 75%{ transform:rotate(7deg);} }
+      .mystery-box.opened{ animation:combo-pop .5s ease; border-color:var(--sun); background:#fff6d6; }
+      .mystery-reward{ font-size:1.5rem; font-weight:800; color:var(--sun-dark); min-height:2rem; margin-bottom:8px; }
+
+      /* ===== عجلة الحظ ===== */
+      .wheel-wrap{ display:grid; place-items:center; margin:6px 0 14px; position:relative; }
+      .wheel-outer{ position:relative; width:240px; height:240px; }
+      .wheel-disc{
+        position:absolute; inset:0; border-radius:50%; border:8px solid #fff;
+        box-shadow:0 8px 0 rgba(60,58,77,.18), inset 0 0 0 3px rgba(60,58,77,.08);
+        background:conic-gradient(#ff6b8a 0 60deg,#ffc93c 60deg 120deg,#17b890 120deg 180deg,#4a90e2 180deg 240deg,#a678e8 240deg 300deg,#ff8a3d 300deg 360deg);
+        transition:transform 4.2s cubic-bezier(.12,.8,.18,1);
+      }
+      .wheel-label{ position:absolute; top:50%; left:50%; font-size:1.5rem; font-weight:800; color:#fff; text-shadow:0 2px 3px rgba(0,0,0,.35); }
+      .wheel-hub{ position:absolute; top:50%; left:50%; width:54px; height:54px; border-radius:50%; background:#fff; transform:translate(-50%,-50%); display:grid; place-items:center; font-size:1.6rem; box-shadow:0 3px 0 rgba(60,58,77,.2); }
+      .wheel-pointer{ position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:1.8rem; z-index:2; filter:drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
+      .wheel-result{ font-size:1.4rem; font-weight:800; color:var(--sun-dark); min-height:2.2rem; }
+      .spin-btn{ font-size:1.3rem; }
+      @media (prefers-reduced-motion: reduce){
+        .combo-badge.pop,.game-stage.shaking,.burst-star,.pill.pulsing,.scene.hinting .drag,.mystery-box.wiggling{ animation:none !important; }
+        .wheel-disc{ transition-duration:.1s; }
+      }
       .streak-line{ text-align:center; font-weight:800; color:var(--sun-dark); margin-top:10px; min-height:1.6rem; font-size:1.05rem; }
     </style>
   </head>
@@ -483,6 +542,8 @@
           </div>
           <div class="q-bubble" id="gameQ">سؤال</div>
           <div class="progress-dots" id="gameDots"></div>
+          <div class="combo-badge" id="comboBadge"></div>
+          <div class="timer-wrap" id="timerWrap" style="display:none;"><div class="timer-fill" id="timerFill"></div></div>
           <div class="play-area" id="playArea"></div>
           <p class="feedback" id="gameFeedback" aria-live="polite"></p>
         </div>
@@ -516,9 +577,31 @@
         <div class="win-stars" id="winStars"></div>
         <h2 id="winTitle">أحسنت!</h2>
         <p id="winText">خلّصت المستوى</p>
-        <div class="win-actions">
+        <div class="mystery-row" id="mysteryRow"></div>
+        <div class="mystery-reward" id="mysteryReward"></div>
+        <div class="win-actions" id="winActions">
           <button class="btn btn-primary" id="winNext">المستوى اللي بعده</button>
           <button class="btn btn-ghost" id="winLevels">المستويات</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== عجلة الحظ اليومية ===== -->
+    <div class="overlay" id="wheelOverlay" role="dialog" aria-modal="true">
+      <div class="win-card">
+        <h2>عجلة الحظ 🎡</h2>
+        <p>لفّ العجلة وخد هديتك!</p>
+        <div class="wheel-wrap">
+          <div class="wheel-outer">
+            <div class="wheel-pointer">🔻</div>
+            <div class="wheel-disc" id="wheelDisc"></div>
+            <div class="wheel-hub">🌟</div>
+          </div>
+        </div>
+        <div class="wheel-result" id="wheelResult"></div>
+        <div class="win-actions">
+          <button class="btn btn-primary spin-btn" id="spinBtn">لفّ! 🌀</button>
+          <button class="btn btn-ghost" id="wheelDone" style="display:none;">تمام ✓</button>
         </div>
       </div>
     </div>
@@ -545,7 +628,8 @@
         streak: { count: 0, last: "" },
         roomDay: { date: "", living: {}, kitchen: {}, play: {} },
         levels: { count: {}, memory: {}, pattern: {}, quran: {} },
-        shop: { owned: [], worn: [], placed: [] }
+        shop: { owned: [], worn: [], placed: [] },
+        best: 0
       };
     }
     let save = defaultSave();
@@ -555,8 +639,21 @@
     } catch (e) { /* لو الحفظ مش متاح اللعبة تكمل من غيره */ }
     if (save.roomDay.date !== todayStr()) { save.roomDay = { date: todayStr(), living: {}, kitchen: {}, play: {} }; }
     function persist() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); } catch (e) {} }
-    function renderStars() { $("#starCount").textContent = toAr(save.stars); }
-    function addStars(n) { save.stars += n; persist(); renderStars(); }
+    let shownStars = 0;
+    function renderStars() { shownStars = save.stars; $("#starCount").textContent = toAr(save.stars); }
+    function addStars(n) {
+      save.stars += n; persist();
+      const pill = $("#starCount").closest(".pill");
+      if (pill) { pill.classList.remove("pulsing"); void pill.offsetWidth; pill.classList.add("pulsing"); }
+      sfx.pop();
+      const from = shownStars, to = save.stars, t0 = performance.now();
+      (function step(t) {
+        const k = Math.min(1, (t - t0) / 700);
+        const v = Math.round(from + (to - from) * k);
+        $("#starCount").textContent = toAr(v);
+        if (k < 1) requestAnimationFrame(step); else shownStars = to;
+      })(t0);
+    }
 
     /* ================= الصوت: قارئ المتصفح + مؤثرات بسيطة ================= */
     let actx = null;
@@ -585,6 +682,28 @@
       bad:  () => tone(180, 0, 0.16, "sawtooth", 0.06)
     };
     document.addEventListener("pointerdown", () => ac(), { once: true });
+
+    /* ---- موسيقى خلفية مرحة (مولّدة، بتتكتم مع زرار الصوت) ---- */
+    const music = {
+      on: false, timer: null, step: 0,
+      notes: [523, 659, 784, 880, 784, 659, 587, 659],
+      start() {
+        if (this.on || !save.sound) return;
+        const c = ac(); if (!c) return;
+        this.on = true;
+        const tick = () => {
+          if (!this.on) return;
+          const f = this.notes[this.step % this.notes.length];
+          tone(f, 0, 0.22, "triangle", 0.045);
+          if (this.step % 2 === 0) tone(f / 2, 0, 0.3, "sine", 0.03);
+          this.step++;
+          this.timer = setTimeout(tick, 340);
+        };
+        tick();
+      },
+      stop() { this.on = false; if (this.timer) clearTimeout(this.timer); }
+    };
+    document.addEventListener("pointerdown", () => { if (save.sound) music.start(); }, { once: true });
 
     let arVoice = null;
     function findArVoice() {
@@ -792,7 +911,7 @@
     }
     $("#soundBtn").addEventListener("click", () => {
       save.sound = !save.sound; persist(); syncSoundIcon();
-      if (!save.sound) stopSpeak(); else { sfx.pop(); if (lastSpoken) speak(lastSpoken, lastClip); }
+      if (!save.sound) { stopSpeak(); music.stop(); } else { sfx.pop(); music.start(); if (lastSpoken) speak(lastSpoken, lastClip); }
     });
 
     function confetti() {
@@ -888,12 +1007,54 @@
       save.streak.count = save.streak.last === yStr ? save.streak.count + 1 : 1;
       save.streak.last = todayStr();
       save.giftDate = todayStr();
-      const bonus = save.streak.count >= 3;
-      addStars(bonus ? 3 : 2);
-      sfx.win(); confetti();
-      const msg = bonus ? "هدية النهاردة وصلت: تلات نجوم عشان انت مواظب!" : "هدية النهاردة وصلت: نجمتين!";
+      persist();
+      openWheel();
+    });
+
+    /* ---- عجلة الحظ ---- */
+    const WHEEL_SEGS = [2, 3, 2, 4, 2, 5];
+    let wheelAngle = 0, wheelSpinning = false;
+    function openWheel() {
+      $("#wheelResult").textContent = "";
+      $("#spinBtn").style.display = "";
+      $("#wheelDone").style.display = "none";
+      $("#spinBtn").disabled = false;
+      const disc = $("#wheelDisc");
+      disc.innerHTML = WHEEL_SEGS.map((v, i) =>
+        '<span class="wheel-label" style="transform:translate(-50%,-50%) rotate(' + (i * 60 + 30) + 'deg) translateY(-86px);">' +
+        (v === 5 ? "🌟" : toAr(v) + "⭐") + "</span>").join("");
+      $("#wheelOverlay").classList.add("show");
+      speak("لفّ عجلة الحظ وشوف هديتك النهاردة!");
+    }
+    $("#spinBtn").addEventListener("click", () => {
+      if (wheelSpinning) return;
+      wheelSpinning = true;
+      $("#spinBtn").disabled = true;
+      const seg = rand(0, 5);
+      wheelAngle += 360 * 5 + (360 - seg * 60 - 30) - (wheelAngle % 360);
+      const disc = $("#wheelDisc");
+      disc.style.transform = "rotate(" + wheelAngle + "deg)";
+      tone(500, 0, 0.1, "triangle", 0.12);
+      let ticks = 0;
+      const tickTimer = setInterval(() => { tone(400 + ticks * 30, 0, 0.06, "triangle", 0.09); ticks++; if (ticks > 18) clearInterval(tickTimer); }, 220);
+      setTimeout(() => {
+        wheelSpinning = false;
+        const bonus = save.streak.count >= 3 ? 1 : 0;
+        const won = WHEEL_SEGS[seg] + bonus;
+        addStars(won);
+        sfx.win(); confetti();
+        const msg = (save.streak.count >= 3 ? "المواظبة زادتك نجمة! " : "") + "كسبت " + toAr(won) + (won === 3 ? " نجوم" : won === 4 ? " نجوم" : won >= 5 ? " نجوم" : won === 2 ? " نجمتين" : " نجمة") + " من عجلة الحظ!";
+        $("#wheelResult").textContent = "🎉 " + msg;
+        speak(msg, won - bonus === 2 && bonus === 0 ? "n_gift" : null);
+        $("#spinBtn").style.display = "none";
+        $("#wheelDone").style.display = "";
+      }, 4400);
+    });
+    $("#wheelDone").addEventListener("click", () => {
+      $("#wheelOverlay").classList.remove("show");
+      sfx.tap();
+      const msg = "هدية النهاردة وصلت! تعالى بكرة تاني ولفّ العجلة!";
       $("#greetText").textContent = msg;
-      speak(msg, bonus ? "n_gift3" : "n_gift");
       renderHome();
     });
 
@@ -998,6 +1159,15 @@
       def.build(ctx);
       setRoomSay(def.say, def.clip);
       speak(def.say, def.clip);
+      setTimeout(() => {
+        if (!scene.isConnected) return;
+        const def2 = ROOM_DEFS[id];
+        const left = def2.tasks.filter(t => !ctx.done[t]);
+        if (left.length) {
+          scene.classList.add("hinting");
+          setTimeout(() => { if (scene.isConnected) scene.classList.remove("hinting"); }, 2600);
+        }
+      }, 6000);
     }
     function renderTaskStars(id, ctx) {
       const def = ROOM_DEFS[id];
@@ -1214,6 +1384,89 @@
     <script>
     "use strict";
     /* ================= محطة الألغاز ================= */
+    /* ---------- تحدي السرعة: دقيقة، أسئلة متنوعة، نتيجة ---------- */
+    let speedTimer = null;
+    function startSpeed() {
+      currentGame = null;
+      session = { game: "speed", lvl: 0, q: 0, mistakes: 0, busy: false, combo: 0, score: 0, left: 60, twin: Math.random() < 0.5 ? "omar" : "yassin" };
+      showScreen("screen-game");
+      $("#gameTitle").textContent = "تحدي السرعة ⚡";
+      $("#qNono").innerHTML = nonoSVG([]);
+      $("#qTwin").innerHTML = boySVG(session.twin);
+      showCombo(0);
+      $("#timerWrap").style.display = "";
+      $("#timerFill").className = "timer-fill";
+      $("#timerFill").style.width = "100%";
+      speak("دقيقة واحدة! جاوب صح على قد ما تقدر، يلا بينا!");
+      if (speedTimer) clearInterval(speedTimer);
+      speedTimer = setInterval(() => {
+        if (!session || session.game !== "speed") { clearInterval(speedTimer); return; }
+        session.left--;
+        $("#timerFill").style.width = Math.max(0, session.left / 60 * 100) + "%";
+        if (session.left <= 10) $("#timerFill").classList.add("danger");
+        if (session.left <= 0) { clearInterval(speedTimer); speedEnd(); }
+      }, 1000);
+      cleanupCurrent = () => { if (speedTimer) { clearInterval(speedTimer); speedTimer = null; } $("#timerWrap").style.display = "none"; };
+      speedNext();
+    }
+    function speedNext() {
+      if (!session || session.game !== "speed") return;
+      session.busy = false;
+      setQChars();
+      setDots(5, session.q % 5);
+      const gen = Math.random() < 0.55 ? genCountQ(rand(1, 3)) : genPatternQ(rand(1, 3));
+      $("#gameQ").textContent = gen.q;
+      setFeedback("النتيجة: " + toAr(session.score), "");
+      const area = $("#playArea");
+      area.innerHTML = gen.visual + '<div class="options">' +
+        gen.choices.map((c, i) => '<button class="opt-btn" data-i="' + i + '">' + c.html + "</button>").join("") + "</div>";
+      $$(".opt-btn", area).forEach(b => b.addEventListener("click", () => {
+        if (!session || session.game !== "speed" || session.busy) return;
+        const c = gen.choices[parseInt(b.dataset.i, 10)];
+        if (c.ok) {
+          session.busy = true;
+          b.classList.add("right");
+          session.score++; session.q++;
+          session.combo++;
+          sfx.good();
+          if (session.combo >= 2) tone(700 + session.combo * 90, 0.02, 0.14, "triangle", 0.16);
+          burstStars(b);
+          showCombo(session.combo);
+          setFeedback("النتيجة: " + toAr(session.score), "");
+          setTimeout(speedNext, 420);
+        } else {
+          session.mistakes++;
+          session.combo = 0; showCombo(0);
+          b.classList.add("wrong"); b.disabled = true;
+          sfx.bad();
+          const st = b.closest(".game-stage");
+          if (st) { st.classList.remove("shaking"); void st.offsetWidth; st.classList.add("shaking"); setTimeout(() => st.classList.remove("shaking"), 450); }
+        }
+      }));
+    }
+    function speedEnd() {
+      if (!session || session.game !== "speed") return;
+      if (speedTimer) { clearInterval(speedTimer); speedTimer = null; }
+      $("#timerWrap").style.display = "none";
+      const score = session.score;
+      const earned = score >= 12 ? 3 : score >= 7 ? 2 : score >= 3 ? 1 : 0;
+      const isBest = score > (save.best || 0);
+      if (isBest) { save.best = score; persist(); }
+      if (earned > 0) addStars(earned);
+      $("#winStars").innerHTML = starsRow(earned);
+      $("#winTitle").textContent = isBest ? "رقم قياسي جديد! 🏆" : "وقتك خلص! ⏰";
+      $("#winText").textContent = "جاوبت صح " + toAr(score) + " مرة في دقيقة!" + (earned > 0 ? " كسبت " + toAr(earned) + (earned === 1 ? " نجمة" : " نجوم") + "!" : " جرّب تاني عشان تكسب نجوم!") + " أحسن نتيجة: " + toAr(save.best);
+      $("#mysteryRow").innerHTML = "";
+      $("#mysteryReward").textContent = "";
+      $("#winActions").style.visibility = "";
+      $("#winNext").style.display = "";
+      $("#winNext").textContent = "العب تاني ⚡";
+      $("#winOverlay").classList.add("show");
+      sfx.win(); confetti();
+      speak(isBest ? "مبرووك! رقم قياسي جديد! انت بطل السرعة!" : "وقتك خلص! جاوبت " + toAr(score) + " صح!");
+      session.finished = true;
+    }
+
     const GAMES = {
       count:   { name: "ألغاز العد", desc: "عدّ واجمع واطرح بالصور والأرقام", color: "#ffe3ec", levels: 10,
                  icon: '<svg viewBox="0 0 48 48"><circle cx="15" cy="15" r="8" fill="#ff5252"/><circle cx="33" cy="15" r="8" fill="#ffc93c"/><circle cx="24" cy="33" r="8" fill="#4a90e2"/></svg>' },
@@ -1240,7 +1493,11 @@
       return h;
     }
     function renderGameList() {
-      $("#gameList").innerHTML = Object.keys(GAMES).map(g => {
+      const speedRow = '<button class="game-row speed-row" data-speed="1">' +
+        '<span class="gi"><svg viewBox="0 0 48 48"><path d="M26 4L8 28h11l-3 16 18-24H23z" fill="#fff"/></svg></span>' +
+        "<span><h3>تحدي السرعة ⚡</h3><p>دقيقة واحدة! جاوب على قد ما تقدر</p></span>" +
+        '<span class="gs">🏆 ' + toAr(save.best || 0) + "</span></button>";
+      $("#gameList").innerHTML = speedRow + Object.keys(GAMES).map(g => {
         const def = GAMES[g];
         const total = Object.values(save.levels[g]).reduce((a, b) => a + b, 0);
         return '<button class="game-row" data-game="' + g + '">' +
@@ -1249,6 +1506,8 @@
           '<span class="gs">' + STAR_SVG + " " + toAr(total) + " / " + toAr(def.levels * 3) + "</span></button>";
       }).join("");
       $$("#gameList [data-game]").forEach(b => b.addEventListener("click", () => { sfx.tap(); openLevels(b.dataset.game); }));
+      const sp = $('#gameList [data-speed]');
+      if (sp) sp.addEventListener("click", () => { sfx.tap(); startSpeed(); });
     }
     $("#puzzlesBack").addEventListener("click", () => { sfx.tap(); showScreen("screen-home"); renderHome(); });
     $("#levelsBack").addEventListener("click", () => { sfx.tap(); showScreen("screen-puzzles"); renderGameList(); });
@@ -1270,7 +1529,7 @@
 
     /* ---------- جلسة اللعب ---------- */
     function startLevel(game, lvl) {
-      session = { game, lvl, q: 0, mistakes: 0, busy: false, twin: Math.random() < 0.5 ? "omar" : "yassin" };
+      session = { game, lvl, q: 0, mistakes: 0, busy: false, combo: 0, twin: Math.random() < 0.5 ? "omar" : "yassin" };
       showScreen("screen-game");
       $("#gameTitle").textContent = GAMES[game].name + " · مستوى " + toAr(lvl);
       $("#qNono").innerHTML = nonoSVG([]);
@@ -1290,7 +1549,61 @@
       const f = $("#gameFeedback");
       f.textContent = text; f.className = "feedback" + (cls ? " " + cls : "");
     }
+    function showCombo(n) {
+      const el = $("#comboBadge");
+      if (!el) return;
+      if (n >= 2) {
+        el.innerHTML = "🔥 كومبو ×" + toAr(n) + (n >= 5 ? " — انت نار!" : "");
+        el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop");
+      } else el.textContent = "";
+    }
+    function burstStars(btn) {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const stage = btn.closest(".game-stage"); if (!stage) return;
+      if (getComputedStyle(stage).position === "static") stage.style.position = "relative";
+      const sr = stage.getBoundingClientRect(), br = btn.getBoundingClientRect();
+      for (let i = 0; i < 8; i++) {
+        const d = document.createElement("div");
+        d.className = "burst-star";
+        d.innerHTML = STAR_SVG;
+        d.style.left = (br.left - sr.left + br.width / 2 - 11) + "px";
+        d.style.top = (br.top - sr.top + br.height / 2 - 11) + "px";
+        const ang = Math.PI * 2 * i / 8 + Math.random() * 0.6, dist = 55 + Math.random() * 45;
+        d.style.setProperty("--bx", Math.cos(ang) * dist + "px");
+        d.style.setProperty("--by", Math.sin(ang) * dist + "px");
+        stage.appendChild(d);
+        setTimeout(() => d.remove(), 850);
+      }
+    }
     function starsForMistakes(m) { return m <= 2 ? 3 : m <= 4 ? 2 : 1; }
+    /* ---- صندوق المفاجآت: جايزة عشوائية بعد كل مستوى ---- */
+    function setupMystery() {
+      const row = $("#mysteryRow"), rew = $("#mysteryReward"), acts = $("#winActions");
+      if (!row) return;
+      acts.style.visibility = "hidden";
+      rew.textContent = "";
+      row.innerHTML = "";
+      const prizes = shuffle([1, 1, 2, 2, 3]).slice(0, 3);
+      const winPrize = pick(prizes);
+      for (let i = 0; i < 3; i++) {
+        const b = document.createElement("button");
+        b.className = "mystery-box wiggling";
+        b.textContent = "🎁";
+        b.setAttribute("aria-label", "صندوق مفاجآت");
+        b.addEventListener("click", () => {
+          $$(".mystery-box", row).forEach(x => { x.classList.remove("wiggling"); x.disabled = true; });
+          b.classList.add("opened");
+          b.textContent = "⭐";
+          addStars(winPrize);
+          sfx.win(); confetti();
+          const msg = "مفاجأة! كسبت " + (winPrize === 1 ? "نجمة" : winPrize === 2 ? "نجمتين" : "تلات نجوم") + " من الصندوق!";
+          rew.textContent = msg;
+          speak(msg);
+          setTimeout(() => { acts.style.visibility = ""; }, 700);
+        }, { once: true });
+        row.appendChild(b);
+      }
+    }
     function finishLevel() {
       const earned = starsForMistakes(session.mistakes);
       const prev = levelStars(session.game, session.lvl);
@@ -1305,6 +1618,7 @@
       $("#winText").textContent = "خلّصت المستوى " + toAr(session.lvl) + " وكسبت " + toAr(earned) + (earned === 1 ? " نجمة" : " نجوم") + "!";
       $("#winNext").style.display = hasNext ? "" : "none";
       $("#winOverlay").classList.add("show");
+      setupMystery();
       sfx.win(); confetti();
       const starWord = earned === 1 ? "نجمة واحدة" : earned === 2 ? "نجمتين" : "تلات نجوم";
       speak("برافو عليك! خلّصت المستوى وكسبت " + starWord, "n_win" + earned);
@@ -1312,16 +1626,19 @@
     }
     $("#winNext").addEventListener("click", () => {
       $("#winOverlay").classList.remove("show"); sfx.tap();
-      if (session) startLevel(session.game, session.lvl + 1);
+      if (session && session.game === "speed") { $("#winNext").textContent = "المستوى اللي بعده"; startSpeed(); }
+      else if (session) startLevel(session.game, session.lvl + 1);
     });
     $("#winLevels").addEventListener("click", () => {
       $("#winOverlay").classList.remove("show"); sfx.tap();
-      showScreen("screen-levels"); if (currentGame) openLevels(currentGame);
+      if (currentGame) { showScreen("screen-levels"); openLevels(currentGame); }
+      else { showScreen("screen-puzzles"); renderGameList(); }
     });
 
     function nextQuestion() {
       if (session.q >= 5) { finishLevel(); return; }
       session.busy = false;
+      showCombo(session.combo || 0);
       setQChars();
       setDots(5, session.q);
       setFeedback("", "");
@@ -1351,22 +1668,41 @@
         if (c.ok) {
           session.busy = true;
           b.classList.add("right");
+          session.combo = (session.combo || 0) + 1;
           sfx.good();
-          const p = praiseLine();
-          setFeedback(p.text, "good"); speak(p.text, p.clip);
+          if (session.combo >= 2) {
+            tone(700 + session.combo * 90, 0.02, 0.14, "triangle", 0.16);
+            tone(900 + session.combo * 90, 0.14, 0.18, "triangle", 0.14);
+          }
+          burstStars(b);
+          let ptext = praiseLine(), p = ptext;
+          if (session.combo >= 3 && session.combo % 3 === 0) {
+            addStars(1);
+            setFeedback("🔥 كومبو ×" + toAr(session.combo) + "! نجمة هدية!", "good");
+            speak("واو! كومبو " + toAr(session.combo) + " ورا بعض! كسبت نجمة زيادة!");
+          } else {
+            setFeedback(p.text, "good"); speak(p.text, p.clip);
+          }
+          showCombo(session.combo);
           ["#qTwin", "#qNono"].forEach(sel => {
             const el = $(sel);
             el.classList.remove("bounce"); void el.offsetWidth; el.classList.add("bounce");
             setTimeout(() => el.classList.remove("bounce"), 650);
           });
           session.q++;
-          setTimeout(nextQuestion, 1150);
+          setTimeout(nextQuestion, session.combo >= 3 && session.combo % 3 === 0 ? 1400 : 1150);
         } else {
           session.mistakes++;
+          if ((session.combo || 0) >= 2) setFeedback("اتكسر الكومبو! ركّز وارجع تاني 💪", "bad");
+          session.combo = 0; showCombo(0);
           b.classList.add("wrong"); b.disabled = true;
           sfx.bad();
-          const e2 = encourageLine();
-          setFeedback(e2.text, "bad"); speak(e2.text, e2.clip);
+          const st = b.closest(".game-stage");
+          if (st) { st.classList.remove("shaking"); void st.offsetWidth; st.classList.add("shaking"); setTimeout(() => st.classList.remove("shaking"), 450); }
+          if (!$("#gameFeedback").textContent) {
+            const e2 = encourageLine();
+            setFeedback(e2.text, "bad"); speak(e2.text, e2.clip);
+          } else speak($("#gameFeedback").textContent);
         }
       }));
     }
@@ -1542,13 +1878,17 @@
     function stopRecite() { try { reciteAudio.pause(); reciteAudio.onended = null; } catch (e) {} }
     function playRecite(lvl, onend) {
       stopSpeak();
+      let fired = false;
+      const done = () => { if (!fired) { fired = true; if (onend) onend(); } };
       try {
         reciteAudio.src = "assets/quran/10500" + lvl + ".mp3";
         reciteAudio.currentTime = 0;
-        reciteAudio.onended = onend || null;
+        reciteAudio.onended = done;
+        reciteAudio.onerror = done;
         const p = reciteAudio.play();
-        if (p && p.catch) p.catch(() => { if (onend) onend(); });
-      } catch (e) { if (onend) onend(); }
+        if (p && p.catch) p.catch(done);
+        setTimeout(() => { if (!fired && reciteAudio.paused) done(); }, 6000);
+      } catch (e) { done(); }
     }
     function startQuran(lvl) {
       session.quran = { listens: 0, helps: 0, phase: "listen" };
@@ -1715,6 +2055,17 @@
       if (topSlot.indexOf(id) >= 0) save.shop.worn = save.shop.worn.filter(x => topSlot.indexOf(x) < 0);
       if (save.shop.worn.indexOf(id) < 0) save.shop.worn.push(id);
     }
+
+    /* ---- حيوية: الشخصيات بتتهز لوحدها في الرئيسية ---- */
+    setInterval(() => {
+      if (!$("#screen-home").classList.contains("active")) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const pals = $$("#trio .pal");
+      if (!pals.length) return;
+      const b = pick(pals);
+      b.classList.remove("hopping"); void b.offsetWidth; b.classList.add("hopping");
+      setTimeout(() => b.classList.remove("hopping"), 600);
+    }, 6000);
 
     /* ================= البداية ================= */
     syncSoundIcon();
